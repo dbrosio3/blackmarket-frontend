@@ -2,12 +2,33 @@ import React from 'react';
 
 import { AppProviderProps } from './AppProvider';
 
-const SessionContext = React.createContext({});
+enum SessionStates {
+  DEFAULT = 'DEFAULT',
+  LOCKED = 'LOCKED',
+  UNLOCKED = 'UNLOCKED',
+}
+
+type Session = {
+  session: {
+    user: string;
+    state: SessionStates.DEFAULT | SessionStates.LOCKED | SessionStates.UNLOCKED;
+  };
+  login(): void;
+  logout(): void;
+  register(): void;
+};
+
+const SessionContext = React.createContext({} as Session);
 
 const SessionProviderComponent = ({ children }: AppProviderProps) => {
-  const session = {};
+  const session = {
+    user: '',
+    state: SessionStates.LOCKED,
+  };
 
-  const login = () => {};
+  const login = () => {
+    alert('login');
+  };
 
   const register = () => {};
 
