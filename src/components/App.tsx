@@ -1,8 +1,8 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { BrowserRouter } from 'react-router-dom';
 
-import AppRoutes from "./routes/AppRoutes";
+import AppRoutes from './routes/AppRoutes';
 
 const App = () => (
   <BrowserRouter>
