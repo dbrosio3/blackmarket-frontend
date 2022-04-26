@@ -1,10 +1,14 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-type AppProviderProps = {
+import { SessionProvider } from './SessionContext';
+
+export type AppProviderProps = {
   children: React.ReactNode;
 };
 
 export const AppProvider = ({ children = [] }: AppProviderProps) => (
-  <BrowserRouter>{children}</BrowserRouter>
+  <SessionProvider>
+    <BrowserRouter>{children}</BrowserRouter>
+  </SessionProvider>
 );
