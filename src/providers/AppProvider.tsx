@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+import { CartProvider } from './CartContext';
+import { ProductsProvider } from './ProductsContext';
 import { SessionProvider } from './SessionContext';
 
 export type AppProviderProps = {
@@ -8,7 +10,11 @@ export type AppProviderProps = {
 };
 
 export const AppProvider = ({ children = [] }: AppProviderProps) => (
-  <SessionProvider>
-    <BrowserRouter>{children}</BrowserRouter>
-  </SessionProvider>
+  <ProductsProvider>
+    <CartProvider>
+      <SessionProvider>
+        <BrowserRouter>{children}</BrowserRouter>
+      </SessionProvider>
+    </CartProvider>
+  </ProductsProvider>
 );
