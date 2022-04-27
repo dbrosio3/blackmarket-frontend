@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { JustChildrenProp } from '../types';
+
 enum SessionStates {
   LOCKED = 'LOCKED',
   UNLOCKED = 'UNLOCKED',
@@ -17,9 +19,7 @@ type Session = {
 
 const SessionContext = React.createContext({} as Session);
 
-type SessionProviderProps = { children: React.ReactNode };
-
-const SessionProviderComponent: React.FC<SessionProviderProps> = ({ children }) => {
+const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
   const session = {
     user: '',
     state: SessionStates.LOCKED,

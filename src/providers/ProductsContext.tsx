@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { JustChildrenProp } from '../types';
+
 const ProductsContext = React.createContext({});
 
-type ProductsProviderProps = { children: React.ReactNode };
-
-const ProductsProviderComponent: React.FC<ProductsProviderProps> = ({ children }) => {
+const ProductsProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
   const products = {};
 
   const getProducts = () => {};

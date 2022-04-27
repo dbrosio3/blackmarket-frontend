@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { JustChildrenProp } from '../types';
+
 const CartContext = React.createContext({});
 
-type CartProviderProps = { children: React.ReactNode };
-
-const CartProviderComponent: React.FC<CartProviderProps> = ({ children }) => {
+const CartProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
   const cart = {};
 
   const addToCart = () => {};

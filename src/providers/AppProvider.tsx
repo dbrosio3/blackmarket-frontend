@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+import { JustChildrenProp } from '../types';
+
 import { CartProvider } from './CartContext';
 import { ProductsProvider } from './ProductsContext';
 import { SessionProvider } from './SessionContext';
 
-type AppProviderProps = { children: React.ReactNode };
-
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => (
+export const AppProvider: React.FC<JustChildrenProp> = ({ children }) => (
   <ProductsProvider>
     <CartProvider>
       <SessionProvider>
