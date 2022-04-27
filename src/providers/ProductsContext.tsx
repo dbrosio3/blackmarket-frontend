@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { AppProviderProps } from './AppProvider';
-
 const ProductsContext = React.createContext({});
 
-const ProductsProviderComponent = ({ children }: AppProviderProps) => {
+type ProductsProviderProps = { children: React.ReactNode };
+
+const ProductsProviderComponent: React.FC<ProductsProviderProps> = ({ children }) => {
   const products = {};
 
   const getProducts = () => {};

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { AppProviderProps } from './AppProvider';
-
 enum SessionStates {
   DEFAULT = 'DEFAULT',
   LOCKED = 'LOCKED',
@@ -20,7 +18,9 @@ type Session = {
 
 const SessionContext = React.createContext({} as Session);
 
-const SessionProviderComponent = ({ children }: AppProviderProps) => {
+type SessionProviderProps = { children: React.ReactNode };
+
+const SessionProviderComponent: React.FC<SessionProviderProps> = ({ children }) => {
   const session = {
     user: '',
     state: SessionStates.LOCKED,

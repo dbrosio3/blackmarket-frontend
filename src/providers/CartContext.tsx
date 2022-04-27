@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { AppProviderProps } from './AppProvider';
-
 const CartContext = React.createContext({});
 
-const CartProviderComponent = ({ children }: AppProviderProps) => {
+type CartProviderProps = { children: React.ReactNode };
+
+const CartProviderComponent: React.FC<CartProviderProps> = ({ children }) => {
   const cart = {};
 
   const addToCart = () => {};
