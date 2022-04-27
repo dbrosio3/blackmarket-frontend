@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { JustChildrenProp } from '../types';
+import { JustChildrenProp } from '@/types';
 
 enum SessionStates {
   LOCKED = 'LOCKED',
