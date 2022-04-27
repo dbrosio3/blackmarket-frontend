@@ -1,7 +1,6 @@
 import React from 'react';
 
 enum SessionStates {
-  DEFAULT = 'DEFAULT',
   LOCKED = 'LOCKED',
   UNLOCKED = 'UNLOCKED',
 }
@@ -9,7 +8,7 @@ enum SessionStates {
 type Session = {
   session: {
     user: string;
-    state: SessionStates.DEFAULT | SessionStates.LOCKED | SessionStates.UNLOCKED;
+    state: SessionStates.LOCKED | SessionStates.UNLOCKED;
   };
   login(): void;
   logout(): void;
