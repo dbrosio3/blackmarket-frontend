@@ -6,6 +6,5 @@ import { Login } from '../../features/Login/Login';
 
 export const AppRoutes = () => {
   const routes = [{ path: '/', element: <Landing /> }, { path: '/login', element: <Login /> }];
-  const element = useRoutes(routes);
-  return <>{element}</>;
+  return useRoutes(routes);
 };
