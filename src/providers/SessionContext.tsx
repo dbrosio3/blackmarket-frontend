@@ -14,7 +14,7 @@ type Session = {
   };
   login(): void;
   logout(): void;
-  register(): void;
+  onRegister(): void;
 };
 
 const SessionContext = React.createContext({} as Session);
@@ -29,7 +29,9 @@ const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
     alert('login');
   };
 
-  const register = () => {};
+  const onRegister = () => {
+    alert('register');
+  };
 
   const logout = () => {};
 
@@ -39,7 +41,7 @@ const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
         session,
         login,
         logout,
-        register,
+        onRegister,
       }}
     >
       {children}
