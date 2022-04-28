@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 
 import { JustChildrenProp } from '@/types';
 
@@ -17,7 +17,7 @@ type Session = {
   onRegister(): void;
 };
 
-const SessionContext = React.createContext({} as Session);
+const SessionContext = createContext({} as Session);
 
 const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
   const session = {
@@ -51,6 +51,6 @@ const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
 
 const SessionProvider = SessionProviderComponent;
 
-const useSession = () => React.useContext(SessionContext);
+const useSession = () => useContext(SessionContext);
 
 export { SessionProvider, useSession };

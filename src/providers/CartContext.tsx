@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 
 import { JustChildrenProp } from '@/types';
 
-const CartContext = React.createContext({});
+const CartContext = createContext({});
 
 const CartProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
   const cart = {};
@@ -23,6 +23,6 @@ const CartProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
 
 const CartProvider = CartProviderComponent;
 
-const useCart = () => React.useContext(CartContext);
+const useCart = () => useContext(CartContext);
 
 export { CartProvider, useCart };
