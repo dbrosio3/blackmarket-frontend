@@ -1,10 +1,17 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-type AppProviderProps = {
-  children: React.ReactNode;
-};
+import { JustChildrenProp } from '@/types';
+import { CartProvider } from '@providers/CartContext';
+import { ProductsProvider } from '@providers/ProductsContext';
+import { SessionProvider } from '@providers/SessionContext';
 
-export const AppProvider = ({ children = [] }: AppProviderProps) => (
-  <BrowserRouter>{children}</BrowserRouter>
+export const AppProvider: React.FC<JustChildrenProp> = ({ children }) => (
+  <ProductsProvider>
+    <CartProvider>
+      <SessionProvider>
+        <BrowserRouter>{children}</BrowserRouter>
+      </SessionProvider>
+    </CartProvider>
+  </ProductsProvider>
 );
