@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useSession } from '../../providers/SessionContext';
+import { useSession } from '@providers/SessionContext';
 
 export const Login = () => {
   const { login } = useSession();
