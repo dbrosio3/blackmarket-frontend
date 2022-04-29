@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSession } from '@providers/SessionContext';
 
-import { registerWithEmailAndPassword } from './api/register';
+import { registerWithEmailAndPassword } from '../api/register';
 
 export const Register = () => {
   const { onRegister } = useSession();
