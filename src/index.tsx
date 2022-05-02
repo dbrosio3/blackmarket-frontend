@@ -6,8 +6,6 @@ import { AppProvider } from '@providers/AppProvider';
 
 import reportWebVitals from './reportWebVitals';
 
-import './index.css';
-
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(

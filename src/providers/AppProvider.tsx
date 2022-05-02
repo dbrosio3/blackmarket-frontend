@@ -1,6 +1,8 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+import { blackMarketTheme } from '@/theme';
 import { JustChildrenProp } from '@/types';
 import { CartProvider } from '@providers/CartContext';
 import { ProductsProvider } from '@providers/ProductsContext';
@@ -10,7 +12,9 @@ export const AppProvider: React.FC<JustChildrenProp> = ({ children }) => (
   <ProductsProvider>
     <CartProvider>
       <SessionProvider>
-        <BrowserRouter>{children}</BrowserRouter>
+        <ChakraProvider theme={blackMarketTheme}>
+          <BrowserRouter>{children}</BrowserRouter>
+        </ChakraProvider>
       </SessionProvider>
     </CartProvider>
   </ProductsProvider>
