@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { useSession } from '@providers/SessionContext';
+import { Layout } from '../components/Layout';
+import { LoginForm } from '../components/LoginForm';
 
 export const Login = () => {
-  const { login } = useSession();
-
   return (
-    <>
-      <div>Hello</div>
-      <button onClick={login}>login</button>
-    </>
+    <Layout>
+      <LoginForm />
+    </Layout>
   );
 };
