@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 
-import { Container, FormLabel, Input, Link, Text } from '@chakra-ui/react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import {
+  Container,
+  FormLabel,
+  IconButton,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Link,
+  Text,
+} from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { PATHS } from '@/routes/paths';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
+import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 import { BlackMarketLogo } from '@styles/theme/components/Logo';
 
 import { AuthSection } from '../common/AuthSection';
@@ -32,7 +42,13 @@ const fields = [
     type: 'text',
     placeholder: 'Type your user name',
   },
-  { key: 'password', label: 'Password', type: 'password', placeholder: 'Type your password' },
+  {
+    key: 'password',
+    label: 'Password',
+    type: 'password',
+    placeholder: 'Type your password',
+    icon: <VisibilityOff />,
+  },
 ];
 
 interface CredentialsFormState {
@@ -42,7 +58,6 @@ interface CredentialsFormState {
 
 export const RegisterForm = () => {
   const { onRegister } = useSession();
-  const navigate = useNavigate();
 
   const [credentials, setCredentials] = useState<CredentialsFormState>({
     username: '',
@@ -69,15 +84,26 @@ export const RegisterForm = () => {
       <AuthSection height="37.75rem">
         <BlackMarketLogo width={174} height={31} />
         <RegisterFormControl>
-          {fields.map(({ key, label, ...inputProps }) => (
+          {fields.map(({ key, label, icon, ...inputProps }) => (
             <>
               <FormLabel htmlFor={key} mb={0.75}>
                 {label}
               </FormLabel>
-              <Input id={key} onChange={handleInputChange} {...inputProps} />
+              <InputGroup>
+                <Input id={key} onChange={handleInputChange} {...inputProps} />
+                {icon && (
+                  <InputRightElement>
+                    <IconButton
+                      variant="unstyled"
+                      aria-label="Toggle password visibility"
+                      icon={icon}
+                    />
+                  </InputRightElement>
+                )}
+              </InputGroup>
             </>
           ))}
-          <FullWidthButton colorScheme="secondary" disabled>
+          <FullWidthButton colorScheme="secondary" disabled onClick={handleRegister}>
             Sign up
           </FullWidthButton>
         </RegisterFormControl>
