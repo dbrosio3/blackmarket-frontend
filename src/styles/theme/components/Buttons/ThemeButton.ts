@@ -4,6 +4,18 @@ export const ThemeButton: ComponentStyleConfig = {
   baseStyle: {
     fontWeight: 'bold',
     borderRadius: '8px',
+    _disabled: {
+      backgroundColor: 'gray.main',
+      color: 'gray.600',
+      opacity: 1,
+    },
+    _hover: {
+      _disabled: {
+        backgroundColor: 'gray.main',
+        color: 'gray.600',
+        opacity: 0.75,
+      },
+    },
   },
   sizes: {
     sm: {
@@ -18,7 +30,11 @@ export const ThemeButton: ComponentStyleConfig = {
       py: 4,
     },
   },
-  variants: {},
+  variants: {
+    outline: {
+      borderColor: 'secondary.500',
+    },
+  },
   defaultProps: {
     size: 'md',
   },

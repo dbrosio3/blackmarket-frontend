@@ -1,33 +1,19 @@
 import React, { useState } from 'react';
 
-import { chakra, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Container, FormLabel, Input, Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
-import { FullWidthButton } from '@styles/theme/components/Buttons';
-import { BlackMarketLogo } from '@styles/theme/components/Logo';
+import { PATHS } from '@/routes/paths';
+import { FullWidthButton } from '@/styles/theme/components/Buttons';
+import { BlackMarketLogo } from '@/styles/theme/components/Logo';
 
-import { AuthSection } from './AuthSection';
+import { AuthSection } from '../common/AuthSection';
 
-const CredentialsForm = chakra(FormControl, {
-  baseStyle: {
-    width: '100%',
-    marginTop: '2.75rem',
-    alignItems: 'baseline',
-    input: {
-      marginBottom: '0.75rem',
-    },
-  },
-});
-
-const BottomSection = chakra('div', {
-  baseStyle: {
-    width: '100%',
-    marginTop: '2.75rem',
-  },
-});
+import { LoginFormControl } from './LoginFormControl.styles';
 
 const fields = [
   {
-    key: 'username',
+    key: 'userId',
     label: 'Email or telephone number',
     type: 'text',
     placeholder: 'Type your email or telephone',
@@ -36,13 +22,15 @@ const fields = [
 ];
 
 interface CredentialsFormState {
-  username: string;
+  userId: string;
   password: string;
 }
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
+
   const [credentials, setCredentials] = useState<CredentialsFormState>({
-    username: '',
+    userId: '',
     password: '',
   });
 
@@ -53,7 +41,7 @@ export const LoginForm = () => {
     <>
       <AuthSection height="29rem">
         <BlackMarketLogo width={174} height={31} />
-        <CredentialsForm>
+        <LoginFormControl>
           {fields.map(({ key, label, ...inputProps }) => (
             <>
               <FormLabel htmlFor={key}>{label}</FormLabel>
@@ -61,15 +49,22 @@ export const LoginForm = () => {
             </>
           ))}
           <FullWidthButton colorScheme="secondary">Log in</FullWidthButton>
-        </CredentialsForm>
-        <BottomSection>
+        </LoginFormControl>
+        <Container w="100%" mt="2.75rem">
           <FullWidthButton colorScheme="lightblue" variant="link">
             I forgot my password
           </FullWidthButton>
-        </BottomSection>
+        </Container>
       </AuthSection>
-      <AuthSection height="8rem" mt="1rem">
-        LoginForm2
+      <AuthSection height="8rem" mt="1rem" pt="1.5rem">
+        <Text>{`Don't have an account?`}</Text>
+        <FullWidthButton
+          variant="outline"
+          mt="1rem"
+          onClick={() => navigate(`/${PATHS.AUTH}/${PATHS.REGISTER}`)}
+        >
+          Sign up
+        </FullWidthButton>
       </AuthSection>
     </>
   );
