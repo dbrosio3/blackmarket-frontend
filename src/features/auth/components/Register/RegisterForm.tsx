@@ -14,6 +14,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { PATHS } from '@/routes/paths';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
+import { RegistrationData } from '@features/auth/types';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
 import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
@@ -51,33 +52,26 @@ const fields = [
   },
 ];
 
-interface CredentialsFormState {
-  username: string;
-  password: string;
-}
-
 export const RegisterForm = () => {
   const { onRegister } = useSession();
 
-  const [credentials, setCredentials] = useState<CredentialsFormState>({
-    username: '',
+  const [userData, setUserData] = useState<RegistrationData>({
+    userId: '',
+    fullName: '',
+    userName: '',
     password: '',
   });
 
   const handleRegister = async () => {
     // TODO: implement proper registration
     await registerWithEmailAndPassword({
-      user: {
-        email: 'test@test.com',
-        password: 'test1234',
-        name: 'Test Testingson',
-      },
+      user: userData,
     });
     onRegister();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value });
 
   return (
     <>

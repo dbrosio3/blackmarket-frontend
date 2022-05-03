@@ -1,12 +1,6 @@
 import { axiosClient } from '@/lib/axios';
 
-export type RegisterCredentialsDTO = {
-  user: {
-    email: string;
-    password: string;
-    name: string;
-  };
-};
+import { RegisterCredentialsDTO } from '../types';
 
 export interface AuthResponse {
   status: 'success' | 'error';
