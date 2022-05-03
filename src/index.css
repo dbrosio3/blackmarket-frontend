@@ -1,6 +1,9 @@
+html {
+  overflow: hidden !important;
+}
+
 body {
   height: 100vh;
   width: 100vw;
   background-color: #00031a !important;
-  overflow-y: hidden;
 }

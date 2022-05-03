@@ -1,21 +1,17 @@
 import React from 'react';
 
-import { Box } from '@chakra-ui/react';
+import { Container, VStack } from '@chakra-ui/react';
 
 import chairsBg from '@/assets/chairs-bg.png';
+import { ViewPort } from '@/theme/components/Misc';
 import { JustChildrenProp } from '@/types';
 
-type Props = JustChildrenProp;
-
-export const Layout = (props: Props) => {
+export const Layout: React.FC<JustChildrenProp> = ({ children }) => {
   return (
-    <Box
-      w="100vw"
-      h="100vh"
-      bg="secondary.900"
-      bgImg={chairsBg}
-      backgroundSize="cover"
-      overflow="hidden"
-    />
+    <ViewPort bgImage={chairsBg}>
+      <VStack width="45%" height="100%" justifyContent="center">
+        <Container centerContent>{children}</Container>
+      </VStack>
+    </ViewPort>
   );
 };
