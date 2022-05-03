@@ -3,6 +3,8 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { Dashboard, MockRoute } from '@features/misc';
 
+import { PATHS } from './paths';
+
 const App = () => {
   return (
     <>
@@ -14,10 +16,10 @@ const App = () => {
 
 export const protectedRoutes = [
   {
-    path: 'app',
+    path: PATHS.APP,
     element: <App />,
     children: [
-      { path: 'mockroute', element: <MockRoute /> },
+      { path: PATHS.MOCK_ROUTE, element: <MockRoute /> },
       { index: true, element: <Dashboard /> },
       { path: '*', element: <Navigate to="." /> },
     ],
