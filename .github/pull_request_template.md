@@ -1,40 +1,16 @@
-## Name Of the PR
+## Links:
+<!--- At a minimum include a link to the Ticket it implements --->
 
-#### Trello board reference:
+* [Trello Card](https://trello.com/#)
+* [Mockups](https://figma.com/#)
 
-* [Trello Card #]()
+## What & Why:
+<!--- Describe the changes being made and why they're useful --->
 
----
+<!--- Screenshots are expected for UI changes... right? ಠ_ಠ --->
 
-#### Description:
+## Risks, Mitigation & Rollback:
+<!--- What risks exist for these new changes and what steps to mitigate them have been taken? --->
+<!--- What steps are necessary to rollback this code safely? --->
 
-*
-
----
-
-#### Reviewers:
-
-*
-
----
-
-#### Notes:
-
-*
-
----
-
-#### Tasks:
-
-
----
-
-#### Risk:
-
-*
-
----
-
-#### Preview:
-
-* N/A
+- [] Safe to Revert *check this box if this PR can be reverted without incident*
