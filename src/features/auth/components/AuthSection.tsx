@@ -7,7 +7,7 @@ const StyledContainer = chakra(Container, {
     bg: 'white',
     width: '22.5rem',
     borderRadius: '8px',
-    padding: '3rem 1rem',
+    padding: '3rem 2.25rem',
   },
 });
 
