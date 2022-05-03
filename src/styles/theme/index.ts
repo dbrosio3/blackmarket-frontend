@@ -72,10 +72,6 @@ const colors = {
   },
 };
 
-// const shadows = {
-//   outline: '0 0 0 3px var(--chakra-colors-secondary-50)',
-// };
-
 const components = {
   Button: ThemeButton,
   Input: ThemeInput,
