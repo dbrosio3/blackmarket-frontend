@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Layout } from '../components/common/Layout';
-import { LoginForm } from '../components/Login/LoginForm';
+import { LoginFormContainer } from '../components/Login/LoginFormContainer';
 
 export const Login = () => {
   return (
     <Layout>
-      <LoginForm />
+      <LoginFormContainer />
     </Layout>
   );
 };
