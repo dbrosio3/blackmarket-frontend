@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Layout } from '../components/common/Layout';
-import { RegisterForm } from '../components/Register/RegisterForm';
+import { RegisterFormContainer } from '../components/Register/RegisterFormContainer';
 
 export const Register = () => {
   return (
     <Layout>
-      <RegisterForm />
+      <RegisterFormContainer />
     </Layout>
   );
 };
