@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import { Landing } from '@features/landing';
+import { Landing } from '@features/Landing';
 import { useSession } from '@providers/SessionContext';
 
 import { protectedRoutes } from './protected';
