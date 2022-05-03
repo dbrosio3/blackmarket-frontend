@@ -9,7 +9,7 @@ export const Register = () => {
 
   const handleRegister = async () => {
     // TODO: implement proper registration
-    const _response = await registerWithEmailAndPassword({
+    await registerWithEmailAndPassword({
       user: {
         email: 'test@test.com',
         password: 'test1234',

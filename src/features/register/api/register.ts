@@ -28,10 +28,9 @@ interface RegistrationResponse extends AuthResponse {
 
 export const registerWithEmailAndPassword = (
   data: RegisterCredentialsDTO
-): Promise<RegistrationResponse> => {
-  return axios.post('/auth', data, {
+): Promise<RegistrationResponse> =>
+  axios.post('/auth', data, {
     headers: {
       'Content-Type': 'application/json',
     },
   });
-};
