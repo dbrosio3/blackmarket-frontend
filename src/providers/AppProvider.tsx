@@ -3,11 +3,11 @@ import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { blackMarketTheme } from '@/theme';
 import { JustChildrenProp } from '@/types';
 import { CartProvider } from '@providers/CartContext';
 import { ProductsProvider } from '@providers/ProductsContext';
 import { SessionProvider } from '@providers/SessionContext';
+import { blackMarketTheme } from '@styles/theme';
 
 export const AppProvider: React.FC<JustChildrenProp> = ({ children }) => (
   <ProductsProvider>

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Container, VStack } from '@chakra-ui/react';
 
-import chairsBg from '@/assets/chairs-bg.png';
-import { ViewPort } from '@/theme/components/Misc';
 import { JustChildrenProp } from '@/types';
+import chairsBg from '@assets/chairs-bg.png';
+import { ViewPort } from '@styles/theme/components/Misc';
 
 export const Layout: React.FC<JustChildrenProp> = ({ children }) => {
   return (
