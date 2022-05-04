@@ -1,4 +1,4 @@
-import { axios } from '@/lib/axios';
+import { axiosClient } from '@/lib/axios';
 
 export type RegisterCredentialsDTO = {
   user: {
@@ -29,7 +29,7 @@ interface RegistrationResponse extends AuthResponse {
 export const registerWithEmailAndPassword = (
   data: RegisterCredentialsDTO
 ): Promise<RegistrationResponse> =>
-  axios.post('/auth', data, {
+  axiosClient.post('/auth', data, {
     headers: {
       'Content-Type': 'application/json',
     },
