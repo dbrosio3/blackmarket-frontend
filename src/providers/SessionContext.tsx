@@ -26,7 +26,8 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
     state: SessionStates.LOCKED,
   };
 
-  const isAuthenticated = true;
+  // TODO: `isAuthenticated` value should be a derivation of session state
+  const isAuthenticated = false;
 
   const login = () => {
     alert('login');
