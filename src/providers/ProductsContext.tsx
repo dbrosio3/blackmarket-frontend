@@ -4,7 +4,7 @@ import { JustChildrenProp } from '@/types';
 
 const ProductsContext = createContext({});
 
-const ProductsProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
+const ProductsProvider: React.FC<JustChildrenProp> = ({ children }) => {
   const products = {};
 
   const getProducts = () => {};
@@ -20,8 +20,6 @@ const ProductsProviderComponent: React.FC<JustChildrenProp> = ({ children }) => 
     </ProductsContext.Provider>
   );
 };
-
-const ProductsProvider = ProductsProviderComponent;
 
 const useProducts = () => useContext(ProductsContext);
 

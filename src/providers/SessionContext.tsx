@@ -19,7 +19,7 @@ type Session = {
 
 const SessionContext = createContext({} as Session);
 
-const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
+const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
   const session = {
     user: '',
     state: SessionStates.LOCKED,
@@ -48,8 +48,6 @@ const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
     </SessionContext.Provider>
   );
 };
-
-const SessionProvider = SessionProviderComponent;
 
 const useSession = () => useContext(SessionContext);
 

@@ -4,7 +4,7 @@ import { JustChildrenProp } from '@/types';
 
 const CartContext = createContext({});
 
-const CartProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
+const CartProvider: React.FC<JustChildrenProp> = ({ children }) => {
   const cart = {};
 
   const addToCart = () => {};
@@ -20,8 +20,6 @@ const CartProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
-const CartProvider = CartProviderComponent;
 
 const useCart = () => useContext(CartContext);
 
