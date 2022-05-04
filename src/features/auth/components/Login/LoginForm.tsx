@@ -12,16 +12,7 @@ interface CredentialsFormState {
   password: string;
 }
 
-const fields = [
-  {
-    key: 'userId',
-    type: 'text',
-  },
-  {
-    key: 'password',
-    type: 'password',
-  },
-];
+const fields = [{ key: 'userId', type: 'text' }, { key: 'password', type: 'password' }];
 
 export const LoginForm = () => {
   const { t } = useTranslation();

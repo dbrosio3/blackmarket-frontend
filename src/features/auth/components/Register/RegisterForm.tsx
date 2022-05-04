@@ -12,23 +12,10 @@ import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 import { RegisterFormControl } from './RegisterFormControl.styles';
 
 const fields = [
-  {
-    key: 'userId',
-    type: 'text',
-  },
-  {
-    key: 'fullName',
-    type: 'text',
-  },
-  {
-    key: 'userName',
-    type: 'text',
-  },
-  {
-    key: 'password',
-    type: 'password',
-    icon: <VisibilityOff />,
-  },
+  { key: 'userId', type: 'text' },
+  { key: 'fullName', type: 'text' },
+  { key: 'userName', type: 'text' },
+  { key: 'password', type: 'password', icon: <VisibilityOff /> },
 ];
 
 export const RegisterForm = () => {
