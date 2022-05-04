@@ -15,6 +15,26 @@
         "label": "Password",
         "placeholder": "Type your password"
       }
+    },
+    "register": {
+      "userId": {
+        "label": "Email or telephone number",
+        "placeholder": "Type your email or telephone"
+      },
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Type your full name"
+      },
+      "username": {
+        "label": "User Name",
+        "placeholder": "Type your user name"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Type your password"
+      },
+      "termsAndConditionsText": "By signing up, you accept our <1>Conditions</1>, the <3>Data Policy</3> and the <5>Cookies Policy</5>.",
+      "alreadyHaveAccount": "Already have an account? <1>Log in</1>"
     }
   }
 }

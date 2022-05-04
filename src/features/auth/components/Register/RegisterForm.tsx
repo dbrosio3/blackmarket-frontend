@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { FormLabel, IconButton, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegistrationData } from '@features/auth/types';
@@ -10,35 +11,8 @@ import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 
 import { RegisterFormControl } from './RegisterFormControl.styles';
 
-const fields = [
-  {
-    key: 'userId',
-    label: 'Email or telephone number',
-    type: 'text',
-    placeholder: 'Type your email or telephone',
-  },
-  {
-    key: 'fullName',
-    label: 'Full Name',
-    type: 'text',
-    placeholder: 'Type your full name',
-  },
-  {
-    key: 'userName',
-    label: 'User Name',
-    type: 'text',
-    placeholder: 'Type your user name',
-  },
-  {
-    key: 'password',
-    label: 'Password',
-    type: 'password',
-    placeholder: 'Type your password',
-    icon: <VisibilityOff />,
-  },
-];
-
 export const RegisterForm = () => {
+  const { t } = useTranslation();
   const { onRegister } = useSession();
 
   const [userData, setUserData] = useState<RegistrationData>({
@@ -47,6 +21,34 @@ export const RegisterForm = () => {
     userName: '',
     password: '',
   });
+
+  const fields = [
+    {
+      key: 'userId',
+      label: t('auth.register.userId.label'),
+      type: 'text',
+      placeholder: t('auth.register.userId.placeholder'),
+    },
+    {
+      key: 'fullName',
+      label: t('auth.register.fullName.label'),
+      type: 'text',
+      placeholder: t('auth.register.fullName.placeholder'),
+    },
+    {
+      key: 'userName',
+      label: t('auth.register.fullName.label'),
+      type: 'text',
+      placeholder: t('auth.register.fullName.placeholder'),
+    },
+    {
+      key: 'password',
+      label: t('auth.register.password.label'),
+      type: 'password',
+      placeholder: t('auth.register.password.placeholder'),
+      icon: <VisibilityOff />,
+    },
+  ];
 
   const handleRegister = async () => {
     // TODO: implement proper registration
@@ -81,7 +83,7 @@ export const RegisterForm = () => {
         </>
       ))}
       <FullWidthButton colorScheme="secondary" disabled onClick={handleRegister}>
-        Sign up
+        {t('common.signUp')}
       </FullWidthButton>
     </RegisterFormControl>
   );
