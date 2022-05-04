@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 
 import { JustChildrenProp } from '@/types';
 
@@ -12,24 +12,30 @@ type Session = {
     user: string;
     state: SessionStates.LOCKED | SessionStates.UNLOCKED;
   };
+  isAuthenticated: boolean;
   login(): void;
   logout(): void;
-  register(): void;
+  onRegister(): void;
 };
 
-const SessionContext = React.createContext({} as Session);
+const SessionContext = createContext({} as Session);
 
-const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
+const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
   const session = {
     user: '',
     state: SessionStates.LOCKED,
   };
 
+  // TODO: `isAuthenticated` value should be a derivation of session state
+  const isAuthenticated = false;
+
   const login = () => {
     alert('login');
   };
 
-  const register = () => {};
+  const onRegister = () => {
+    alert('register');
+  };
 
   const logout = () => {};
 
@@ -37,9 +43,10 @@ const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
     <SessionContext.Provider
       value={{
         session,
+        isAuthenticated,
         login,
         logout,
-        register,
+        onRegister,
       }}
     >
       {children}
@@ -47,8 +54,6 @@ const SessionProviderComponent: React.FC<JustChildrenProp> = ({ children }) => {
   );
 };
 
-const SessionProvider = SessionProviderComponent;
-
-const useSession = () => React.useContext(SessionContext);
+const useSession = () => useContext(SessionContext);
 
 export { SessionProvider, useSession };
