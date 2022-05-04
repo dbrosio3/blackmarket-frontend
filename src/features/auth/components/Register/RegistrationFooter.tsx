@@ -10,27 +10,14 @@ export const RegistrationFooter = () => (
   <Container w="110%" mt="1rem" px="0" mx="-0.5rem">
     <Text align="center">
       <Trans i18nKey="auth.register.termsAndConditionsText">
-        By signing up, you accept our
-        <Link as={RouterLink} to={`/${PATHS.TERMS_AND_CONDITIONS}`} colorScheme="lightblue">
-          Conditions
-        </Link>
-        , the
-        <Link as={RouterLink} to={`/${PATHS.PRIVACY_POLICY}`}>
-          Data Policy
-        </Link>
-        and the
-        <Link as={RouterLink} to={`/${PATHS.COOKIES}`}>
-          Cookies Policy
-        </Link>
-        .
+        <Link as={RouterLink} to={`/${PATHS.TERMS_AND_CONDITIONS}`} colorScheme="lightblue" />
+        <Link as={RouterLink} to={`/${PATHS.PRIVACY_POLICY}`} />
+        <Link as={RouterLink} to={`/${PATHS.COOKIES}`} />
       </Trans>
     </Text>
     <Text align="center" mt="0.75rem">
       <Trans i18nKey="auth.register.alreadyHaveAccount">
-        Already have an account?
-        <Link as={RouterLink} to={`/${PATHS.AUTH}/${PATHS.LOGIN}`}>
-          Log in
-        </Link>
+        <Link as={RouterLink} to={`/${PATHS.AUTH}/${PATHS.LOGIN}`} />
       </Trans>
     </Text>
   </Container>
