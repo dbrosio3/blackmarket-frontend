@@ -7,16 +7,6 @@ import { FullWidthButton } from '@/styles/theme/components/Buttons';
 
 import { LoginFormControl } from './LoginFormControl.styles';
 
-const fields = [
-  {
-    key: 'userId',
-    label: 'Email or telephone number',
-    type: 'text',
-    placeholder: 'Type your email or telephone',
-  },
-  { key: 'password', label: 'Password', type: 'password', placeholder: 'Type your password' },
-];
-
 interface CredentialsFormState {
   userId: string;
   password: string;
@@ -30,6 +20,21 @@ export const LoginForm = () => {
     password: '',
   });
 
+  const fields = [
+    {
+      key: 'userId',
+      label: t('auth.login.userId.label'),
+      type: 'text',
+      placeholder: t('auth.login.userId.placeholder'),
+    },
+    {
+      key: 'password',
+      label: t('auth.login.password.label'),
+      type: 'password',
+      placeholder: t('auth.login.password.placeholder'),
+    },
+  ];
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
 
@@ -42,7 +47,7 @@ export const LoginForm = () => {
             <Input id={key} onChange={handleInputChange} {...inputProps} />
           </>
         ))}
-        <FullWidthButton colorScheme="secondary">Log in</FullWidthButton>
+        <FullWidthButton colorScheme="secondary">{t('common.logIn')}</FullWidthButton>
       </LoginFormControl>
       <Container w="100%" mt="2.75rem">
         <FullWidthButton colorScheme="lightblue" variant="link">

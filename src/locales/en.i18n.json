@@ -1,7 +1,20 @@
 {
+  "common": {
+    "logIn": "Log in",
+    "signUp": "Sign up"
+  },
   "auth": {
     "login": {
-      "forgotPassword": "I forgot my password"
+      "forgotPassword": "I forgot my password",
+      "dontHaveAccount": "Don't have an account?",
+      "userId": {
+        "label": "Email or telephone number",
+        "placeholder": "Type your email or telephone"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Type your password"
+      }
     }
   }
 }
