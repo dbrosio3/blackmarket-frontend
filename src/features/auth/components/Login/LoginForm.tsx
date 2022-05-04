@@ -12,6 +12,17 @@ interface CredentialsFormState {
   password: string;
 }
 
+const fields = [
+  {
+    key: 'userId',
+    type: 'text',
+  },
+  {
+    key: 'password',
+    type: 'password',
+  },
+];
+
 export const LoginForm = () => {
   const { t } = useTranslation();
 
@@ -20,31 +31,21 @@ export const LoginForm = () => {
     password: '',
   });
 
-  const fields = [
-    {
-      key: 'userId',
-      label: t('auth.login.userId.label'),
-      type: 'text',
-      placeholder: t('auth.login.userId.placeholder'),
-    },
-    {
-      key: 'password',
-      label: t('auth.login.password.label'),
-      type: 'password',
-      placeholder: t('auth.login.password.placeholder'),
-    },
-  ];
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
 
   return (
     <>
       <LoginFormControl>
-        {fields.map(({ key, label, ...inputProps }) => (
+        {fields.map(({ key, ...inputProps }) => (
           <>
-            <FormLabel htmlFor={key}>{label}</FormLabel>
-            <Input id={key} onChange={handleInputChange} {...inputProps} />
+            <FormLabel htmlFor={key}> {t(`auth.register.${key}.label`)}</FormLabel>
+            <Input
+              id={key}
+              onChange={handleInputChange}
+              placeholder={t(`auth.login.${key}.placeholder`)}
+              {...inputProps}
+            />
           </>
         ))}
         <FullWidthButton colorScheme="secondary">{t('common.logIn')}</FullWidthButton>

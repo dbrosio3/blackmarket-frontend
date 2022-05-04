@@ -25,7 +25,7 @@
         "label": "Full Name",
         "placeholder": "Type your full name"
       },
-      "username": {
+      "userName": {
         "label": "User Name",
         "placeholder": "Type your user name"
       },

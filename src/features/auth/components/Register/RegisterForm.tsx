@@ -11,6 +11,26 @@ import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 
 import { RegisterFormControl } from './RegisterFormControl.styles';
 
+const fields = [
+  {
+    key: 'userId',
+    type: 'text',
+  },
+  {
+    key: 'fullName',
+    type: 'text',
+  },
+  {
+    key: 'userName',
+    type: 'text',
+  },
+  {
+    key: 'password',
+    type: 'password',
+    icon: <VisibilityOff />,
+  },
+];
+
 export const RegisterForm = () => {
   const { t } = useTranslation();
   const { onRegister } = useSession();
@@ -21,34 +41,6 @@ export const RegisterForm = () => {
     userName: '',
     password: '',
   });
-
-  const fields = [
-    {
-      key: 'userId',
-      label: t('auth.register.userId.label'),
-      type: 'text',
-      placeholder: t('auth.register.userId.placeholder'),
-    },
-    {
-      key: 'fullName',
-      label: t('auth.register.fullName.label'),
-      type: 'text',
-      placeholder: t('auth.register.fullName.placeholder'),
-    },
-    {
-      key: 'userName',
-      label: t('auth.register.fullName.label'),
-      type: 'text',
-      placeholder: t('auth.register.fullName.placeholder'),
-    },
-    {
-      key: 'password',
-      label: t('auth.register.password.label'),
-      type: 'password',
-      placeholder: t('auth.register.password.placeholder'),
-      icon: <VisibilityOff />,
-    },
-  ];
 
   const handleRegister = async () => {
     // TODO: implement proper registration
@@ -63,13 +55,18 @@ export const RegisterForm = () => {
 
   return (
     <RegisterFormControl>
-      {fields.map(({ key, label, icon, ...inputProps }) => (
+      {fields.map(({ key, icon, ...inputProps }) => (
         <>
           <FormLabel htmlFor={key} mb={0.75}>
-            {label}
+            {t(`auth.register.${key}.label`)}
           </FormLabel>
           <InputGroup>
-            <Input id={key} onChange={handleInputChange} {...inputProps} />
+            <Input
+              id={key}
+              onChange={handleInputChange}
+              placeholder={t(`auth.register.${key}.placeholder`)}
+              {...inputProps}
+            />
             {icon && (
               <InputRightElement>
                 <IconButton
