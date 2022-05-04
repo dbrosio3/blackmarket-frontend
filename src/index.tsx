@@ -7,6 +7,7 @@ import { AppProvider } from '@providers/AppProvider';
 
 import reportWebVitals from './reportWebVitals';
 
+import '@/lib/i18n';
 import '@/styles/index.css';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);

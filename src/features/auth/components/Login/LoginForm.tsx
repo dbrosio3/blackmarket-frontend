@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Container, FormLabel, Input } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 
 import { FullWidthButton } from '@/styles/theme/components/Buttons';
 
@@ -22,6 +23,8 @@ interface CredentialsFormState {
 }
 
 export const LoginForm = () => {
+  const { t } = useTranslation();
+
   const [credentials, setCredentials] = useState<CredentialsFormState>({
     userId: '',
     password: '',
@@ -43,7 +46,7 @@ export const LoginForm = () => {
       </LoginFormControl>
       <Container w="100%" mt="2.75rem">
         <FullWidthButton colorScheme="lightblue" variant="link">
-          I forgot my password
+          {t('auth.login.forgotPassword')}
         </FullWidthButton>
       </Container>
     </>
