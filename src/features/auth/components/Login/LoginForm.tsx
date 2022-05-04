@@ -7,12 +7,12 @@ import { FullWidthButton } from '@/styles/theme/components/Buttons';
 
 import { LoginFormControl } from './LoginFormControl.styles';
 
+const fields = [{ key: 'userId', type: 'text' }, { key: 'password', type: 'password' }];
+
 interface CredentialsFormState {
   userId: string;
   password: string;
 }
-
-const fields = [{ key: 'userId', type: 'text' }, { key: 'password', type: 'password' }];
 
 export const LoginForm = () => {
   const { t } = useTranslation();
