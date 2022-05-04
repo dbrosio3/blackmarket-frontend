@@ -11,9 +11,7 @@ export const AppRoutes = () => {
   const { isAuthenticated } = useSession();
 
   const commonRoutes = [{ index: true, element: <Landing /> }];
-
   const routes = isAuthenticated ? protectedRoutes : publicRoutes;
-
   const element = useRoutes([...routes, ...commonRoutes]);
 
   return <>{element}</>;
