@@ -12,6 +12,7 @@ type Session = {
     user: string;
     state: SessionStates.LOCKED | SessionStates.UNLOCKED;
   };
+  isAuthenticated: boolean;
   login(): void;
   logout(): void;
   onRegister(): void;
@@ -24,6 +25,9 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
     user: '',
     state: SessionStates.LOCKED,
   };
+
+  // TODO: `isAuthenticated` value should be a derivation of session state
+  const isAuthenticated = false;
 
   const login = () => {
     alert('login');
@@ -39,6 +43,7 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
     <SessionContext.Provider
       value={{
         session,
+        isAuthenticated,
         login,
         logout,
         onRegister,
