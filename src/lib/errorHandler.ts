@@ -1,8 +1,4 @@
-import { createStandaloneToast } from '@chakra-ui/react';
-
-import { blackMarketTheme } from '@styles/theme';
-
-const toast = createStandaloneToast({ theme: blackMarketTheme });
+import { customToast } from '@/utils/customStandaloneToast';
 
 const getErrorMessage = (error: unknown) => {
   if (error instanceof Error) return error.message;
@@ -12,7 +8,7 @@ const getErrorMessage = (error: unknown) => {
 class ErrorHandler {
   reportError = (error: unknown) => {
     console.error(error);
-    toast({
+    customToast({
       title: 'An error occurred.',
       description: getErrorMessage(error),
       status: 'error',

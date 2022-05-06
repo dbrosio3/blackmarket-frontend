@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from 'react';
 
 import { JustChildrenProp } from '@/types';
+import { customToast } from '@/utils/customStandaloneToast';
 
 enum SessionStates {
   LOCKED = 'LOCKED',
@@ -34,7 +35,13 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
   };
 
   const onRegister = () => {
-    alert('register');
+    customToast({
+      title: 'Account created.',
+      description: "We've succesfully created your account.",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    });
   };
 
   const logout = () => {};
