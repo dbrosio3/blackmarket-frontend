@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FormLabel, IconButton, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
+import { errorHandler } from '@/lib/errorHandler';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegisterCredentialsDTO, RegistrationData } from '@features/auth/types';
 import { useSession } from '@providers/SessionContext';
@@ -42,9 +43,7 @@ export const RegisterForm = () => {
       await registerWithEmailAndPassword(registrationDTO);
       onRegister();
     } catch (error) {
-      // TODO: improve logging
-      console.error(error);
-      // TODO: add notification
+      errorHandler.reportError(error);
     }
   };
 
