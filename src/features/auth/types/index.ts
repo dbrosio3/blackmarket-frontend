@@ -1,10 +1,15 @@
 export type RegisterCredentialsDTO = {
-  user: RegistrationData;
+  user: {
+    email: string;
+    fullname: string;
+    nickname: string;
+    password: string;
+  };
 };
 
 export type RegistrationData = {
-  userId: '';
-  fullName: '';
-  userName: '';
-  password: '';
+  userId: string;
+  fullName: string;
+  userName: string;
+  password: string;
 };

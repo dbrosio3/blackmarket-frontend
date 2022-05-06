@@ -4,7 +4,7 @@ import { FormLabel, IconButton, Input, InputGroup, InputRightElement } from '@ch
 import { useTranslation } from 'react-i18next';
 
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
-import { RegistrationData } from '@features/auth/types';
+import { RegisterCredentialsDTO, RegistrationData } from '@features/auth/types';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
 import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
@@ -12,7 +12,7 @@ import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 import { RegisterFormControl } from './RegisterFormControl.styles';
 
 const fields = [
-  { key: 'userId', type: 'text' },
+  { key: 'userId', type: 'email' },
   { key: 'fullName', type: 'text' },
   { key: 'userName', type: 'text' },
   { key: 'password', type: 'password', icon: <VisibilityOff /> },
@@ -30,15 +30,26 @@ export const RegisterForm = () => {
   });
 
   const handleRegister = async () => {
-    // TODO: implement proper registration
-    await registerWithEmailAndPassword({
-      user: userData,
-    });
-    onRegister();
+    const registrationDTO: RegisterCredentialsDTO = {
+      user: {
+        email: userData.userId,
+        fullname: userData.fullName,
+        nickname: userData.userName,
+        password: userData.password,
+      },
+    };
+    try {
+      await registerWithEmailAndPassword(registrationDTO);
+      onRegister();
+    } catch (error) {
+      // TODO: improve logging
+      console.error(error);
+      // TODO: add notification
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.id]: e.target.value });
 
   return (
     <RegisterFormControl>
@@ -66,7 +77,7 @@ export const RegisterForm = () => {
           </InputGroup>
         </>
       ))}
-      <FullWidthButton colorScheme="secondary" disabled onClick={handleRegister}>
+      <FullWidthButton colorScheme="secondary" onClick={handleRegister}>
         {t('common.signUp')}
       </FullWidthButton>
     </RegisterFormControl>
