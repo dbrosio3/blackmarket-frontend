@@ -1,7 +1,8 @@
 {
   "common": {
     "logIn": "Log in",
-    "signUp": "Sign up"
+    "signUp": "Sign up",
+    "genericError": "An error occurred."
   },
   "auth": {
     "login": {
@@ -34,7 +35,11 @@
         "placeholder": "Type your password"
       },
       "termsAndConditionsText": "By signing up, you accept our <0>Conditions</0>, the <1>Data Policy</1> and the <2>Cookies Policy</2>.",
-      "alreadyHaveAccount": "Already have an account? <0>Log in</0>"
+      "alreadyHaveAccount": "Already have an account? <0>Log in</0>",
+      "success": {
+        "title": "Account created.",
+        "description": "We've succesfully created your account."
+      }
     }
   }
 }

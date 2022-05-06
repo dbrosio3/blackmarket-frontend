@@ -1,5 +1,7 @@
 import React, { createContext, useContext } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import { JustChildrenProp } from '@/types';
 import { customToast } from '@/utils/customStandaloneToast';
 
@@ -22,6 +24,8 @@ type Session = {
 const SessionContext = createContext({} as Session);
 
 const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
+  const { t } = useTranslation();
+
   const session = {
     user: '',
     state: SessionStates.LOCKED,
@@ -36,8 +40,8 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
 
   const onRegister = () => {
     customToast({
-      title: 'Account created.',
-      description: "We've succesfully created your account.",
+      title: t('auth.register.success.title'),
+      description: t('auth.register.success.description'),
       status: 'success',
       duration: 9000,
       isClosable: true,

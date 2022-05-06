@@ -1,3 +1,5 @@
+import { t } from 'i18next';
+
 import { customToast } from '@/utils/customStandaloneToast';
 
 const getErrorMessage = (error: unknown) => {
@@ -9,7 +11,7 @@ class ErrorHandler {
   reportError = (error: unknown) => {
     console.error(error);
     customToast({
-      title: 'An error occurred.',
+      title: String(t('common.genericError')),
       description: getErrorMessage(error),
       status: 'error',
       duration: 9000,
