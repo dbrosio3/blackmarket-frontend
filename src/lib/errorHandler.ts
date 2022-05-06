@@ -11,7 +11,7 @@ class ErrorHandler {
   reportError = (error: unknown) => {
     console.error(error);
     customToast({
-      title: String(t('common.genericError')),
+      title: String(t('error.genericError')),
       description: getErrorMessage(error),
       status: 'error',
       duration: 9000,

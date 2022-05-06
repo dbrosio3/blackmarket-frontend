@@ -2,7 +2,7 @@
   "common": {
     "logIn": "Log in",
     "signUp": "Sign up",
-    "genericError": "An error occurred."
+    "refresh": "Refresh"
   },
   "auth": {
     "login": {
@@ -40,6 +40,12 @@
         "title": "Account created.",
         "description": "We've succesfully created your account."
       }
+    }
+  },
+  "error": {
+    "genericError": "An error occurred.",
+    "errorFallback": {
+      "title": "Ooops, something went wrong :( "
     }
   }
 }
