@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { errorHandler } from '@/lib/errorHandler';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
-import { RegisterCredentialsDTO, RegistrationData } from '@features/auth/types';
+import { RegistrationData } from '@features/auth/types';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
 import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
@@ -31,16 +31,15 @@ export const RegisterForm = () => {
   });
 
   const handleRegister = async () => {
-    const registrationDTO: RegisterCredentialsDTO = {
-      user: {
-        email: userData.userId,
-        fullname: userData.fullName,
-        nickname: userData.userName,
-        password: userData.password,
-      },
-    };
     try {
-      await registerWithEmailAndPassword(registrationDTO);
+      await registerWithEmailAndPassword({
+        user: {
+          email: userData.userId,
+          fullname: userData.fullName,
+          nickname: userData.userName,
+          password: userData.password,
+        },
+      });
       onRegister();
     } catch (error) {
       errorHandler.reportError(error);
