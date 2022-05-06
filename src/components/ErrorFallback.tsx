@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Center, Stack, Text } from '@chakra-ui/react';
+import { Button, Center, Stack, Heading } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 export const ErrorFallback = () => {
@@ -9,14 +9,15 @@ export const ErrorFallback = () => {
   return (
     <Center bg="white" h="100vh" color="secondary.main">
       <Stack>
-        <Text>{t('error.errorFallback.title')}</Text>
-        <Button
-          colorScheme="primary"
-          variant="link"
-          onClick={() => window.location.assign(window.location.origin)}
-        >
-          {t('common.refresh')}
-        </Button>
+        <Heading mb={4}>{t('error.errorFallback.title')}</Heading>
+        <Center>
+          <Button
+            colorScheme="primary"
+            onClick={() => window.location.assign(window.location.origin)}
+          >
+            {t('common.refresh')}
+          </Button>
+        </Center>
       </Stack>
     </Center>
   );
