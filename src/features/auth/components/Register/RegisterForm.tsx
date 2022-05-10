@@ -2,9 +2,10 @@ import React from 'react';
 
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
 
 import { errorHandler } from '@/lib/errorHandler';
-import { TextField } from '@components/TextField';
+import { TextField } from '@components/Form/TextField';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegistrationData } from '@features/auth/types';
 import { useSession } from '@providers/SessionContext';
@@ -47,23 +48,47 @@ export const RegisterForm = () => {
     }
   };
 
+  const registerFormSchema = Yup.object().shape({
+    userId: Yup.string()
+      .email('Invalid email')
+      .required('Required'),
+    fullName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    userName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    password: Yup.string()
+      .min(8, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+  });
+
   return (
-    <Formik initialValues={initialValues} onSubmit={handleRegistration}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={registerFormSchema}
+      onSubmit={handleRegistration}
+    >
       {({ handleSubmit }) => (
-        <InputsWrapper>
-          {fields.map(({ name, ...restProps }) => (
-            <TextField
-              key={name}
-              name={name}
-              label={t(`auth.register.${name}.label`)}
-              placeholder={t(`auth.register.${name}.placeholder`)}
-              {...restProps}
-            />
-          ))}
+        <>
+          <InputsWrapper>
+            {fields.map(({ name, ...restProps }) => (
+              <TextField
+                key={name}
+                name={name}
+                label={t(`auth.register.${name}.label`)}
+                placeholder={t(`auth.register.${name}.placeholder`)}
+                {...restProps}
+              />
+            ))}
+          </InputsWrapper>
           <FullWidthButton colorScheme="secondary" onClick={handleSubmit}>
             {t('common.signUp')}
           </FullWidthButton>
-        </InputsWrapper>
+        </>
       )}
     </Formik>
   );
