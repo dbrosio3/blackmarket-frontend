@@ -10,7 +10,7 @@ type Props = {
   icon?: ReactNode;
 };
 
-export const CustomInput: React.FC<Props> = ({ name, placeholder, icon, ...restProps }) => (
+export const InputField: React.FC<Props> = ({ name, placeholder, icon, ...restProps }) => (
   <InputGroup>
     <Input id={name} placeholder={placeholder} {...restProps} />
     {icon && (
