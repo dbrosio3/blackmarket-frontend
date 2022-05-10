@@ -7,7 +7,7 @@ import { errorHandler } from '@/lib/errorHandler';
 import { TextField } from '@components/Form/TextField';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegistrationData } from '@features/auth/types';
-import { registerFormSchema } from '@features/auth/utils/registerFormSchema';
+import { registerFormikSchema } from '@features/auth/utils/registerFormSchema';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
 import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
@@ -51,7 +51,7 @@ export const RegisterForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={registerFormSchema}
+      validationSchema={registerFormikSchema}
       onSubmit={handleRegistration}
     >
       {({ handleSubmit }) => (
