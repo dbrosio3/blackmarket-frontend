@@ -4,15 +4,15 @@ import { BlackMarketLogo } from '@styles/theme/components/Logo';
 
 import { AuthSection } from '../common/AuthSection';
 
+import { RegisterFooter } from './RegisterFooter';
 import { RegisterForm } from './RegisterForm';
-import { RegistrationFooter } from './RegistrationFooter';
 
 export const RegisterFormContainer = () => {
   return (
     <AuthSection>
       <BlackMarketLogo width={174} height={31} />
       <RegisterForm />
-      <RegistrationFooter />
+      <RegisterFooter />
     </AuthSection>
   );
 };
