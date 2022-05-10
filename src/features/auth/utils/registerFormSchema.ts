@@ -1,23 +1,40 @@
 import * as Yup from 'yup';
 
-import { translationWithPrefix } from '@/utils/translationWithPrefix';
+Yup.setLocale({
+  mixed: {
+    default: { key: 'fieldInvalid' },
+    required: { key: 'fieldRequired' },
+  },
+  string: {
+    min: ({ min }) => ({ key: 'fieldTooShort', values: { min } }),
+    max: ({ max }) => ({ key: 'fieldTooLong', values: { max } }),
+    matches: () => ({ key: 'fieldInvalid' }),
+    email: () => ({ key: 'fieldInvalid' }),
+  },
+});
 
-const tp = translationWithPrefix('error.validations');
+// TODO: extraxt to constants.js
+const FULL_NAME_MIN_LENGTH = 2;
+const FULL_NAME_MAX_LENGTH = 50;
+
+const USERNAME_MIN_LENGTH = 2;
+const USERNAME_MAX_LENGTH = 50;
+
+const PASSWORD_REGEX = new RegExp('^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$');
 
 export const registerFormSchema = Yup.object().shape({
   userId: Yup.string()
-    .email(tp('invalidEmail'))
-    .required(tp('required', { field: 'Email' })),
+    .email()
+    .required(),
   fullName: Yup.string()
-    .min(2, tp('Too Short!'))
-    .max(50, tp('Too Long!'))
-    .required(tp('required', { field: 'Full name' })),
+    .min(FULL_NAME_MIN_LENGTH)
+    .max(FULL_NAME_MAX_LENGTH)
+    .required(),
   userName: Yup.string()
-    .min(2, tp('Too Short!'))
-    .max(50, tp('Too Long!'))
-    .required(tp('required', { field: 'User Name' })),
+    .min(USERNAME_MIN_LENGTH)
+    .max(USERNAME_MAX_LENGTH)
+    .required(),
   password: Yup.string()
-    .min(8, tp('Too Short!'))
-    .max(50, tp('Too Long!'))
-    .required(tp('required', { field: 'Password' })),
+    .matches(PASSWORD_REGEX)
+    .required(),
 });

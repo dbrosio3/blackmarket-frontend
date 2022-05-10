@@ -48,8 +48,10 @@
       "title": "Ooops, something went wrong :( "
     },
     "validations": {
-      "invalidEmail": "Invalid email",
-      "required": "{{field}} is required"
+      "fieldInvalid": "{{field}} is invalid",
+      "fieldRequired": "{{field}} is required",
+      "fieldTooShort": "{{field}} must be longer than {{min}} characters",
+      "fieldTooLong": "{{field}} cannot be longer than {{max}} characters"
     }
   }
 }
