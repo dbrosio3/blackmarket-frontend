@@ -46,6 +46,10 @@
     "genericError": "An error occurred.",
     "errorFallback": {
       "title": "Ooops, something went wrong :( "
+    },
+    "validations": {
+      "invalidEmail": "Invalid email",
+      "required": "{{field}} is required"
     }
   }
 }

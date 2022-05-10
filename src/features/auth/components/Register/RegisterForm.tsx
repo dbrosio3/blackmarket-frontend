@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
 
 import { errorHandler } from '@/lib/errorHandler';
 import { TextField } from '@components/Form/TextField';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegistrationData } from '@features/auth/types';
+import { registerFormSchema } from '@features/auth/utils/registerFormSchema';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
 import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
@@ -47,24 +47,6 @@ export const RegisterForm = () => {
       errorHandler.reportError(error);
     }
   };
-
-  const registerFormSchema = Yup.object().shape({
-    userId: Yup.string()
-      .email('Invalid email')
-      .required('Required'),
-    fullName: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-    userName: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-    password: Yup.string()
-      .min(8, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-  });
 
   return (
     <Formik
