@@ -1,43 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { FormLabel, IconButton, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import { errorHandler } from '@/lib/errorHandler';
+import { TextField } from '@components/TextField';
 import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegistrationData } from '@features/auth/types';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
 import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 
-import { RegisterFormControl } from './RegisterFormControl.styles';
+import { InputsWrapper } from './InputsWrapper';
 
 const fields = [
-  { key: 'userId', type: 'email' },
-  { key: 'fullName', type: 'text' },
-  { key: 'userName', type: 'text' },
-  { key: 'password', type: 'password', icon: <VisibilityOff /> },
+  { name: 'userId', type: 'email' },
+  { name: 'fullName', type: 'text' },
+  { name: 'userName', type: 'text' },
+  { name: 'password', type: 'password', icon: <VisibilityOff /> },
 ];
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
   const { onRegister } = useSession();
 
-  const [userData, setUserData] = useState<RegistrationData>({
+  const initialValues: RegistrationData = {
     userId: '',
     fullName: '',
     userName: '',
     password: '',
-  });
+  };
 
-  const handleRegister = async () => {
+  const handleRegistration = async (values: RegistrationData) => {
     try {
       await registerWithEmailAndPassword({
         user: {
-          email: userData.userId,
-          fullname: userData.fullName,
-          nickname: userData.userName,
-          password: userData.password,
+          email: values.userId,
+          fullname: values.fullName,
+          nickname: values.userName,
+          password: values.password,
         },
       });
       onRegister();
@@ -46,38 +47,24 @@ export const RegisterForm = () => {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setUserData({ ...userData, [e.target.id]: e.target.value });
-
   return (
-    <RegisterFormControl>
-      {fields.map(({ key, icon, ...inputProps }) => (
-        <>
-          <FormLabel htmlFor={key} mb={0.75}>
-            {t(`auth.register.${key}.label`)}
-          </FormLabel>
-          <InputGroup>
-            <Input
-              id={key}
-              onChange={handleInputChange}
-              placeholder={t(`auth.register.${key}.placeholder`)}
-              {...inputProps}
+    <Formik initialValues={initialValues} onSubmit={handleRegistration}>
+      {({ handleSubmit }) => (
+        <InputsWrapper>
+          {fields.map(({ name, ...restProps }) => (
+            <TextField
+              key={name}
+              name={name}
+              label={t(`auth.register.${name}.label`)}
+              placeholder={t(`auth.register.${name}.placeholder`)}
+              {...restProps}
             />
-            {icon && (
-              <InputRightElement>
-                <IconButton
-                  variant="unstyled"
-                  aria-label="Toggle password visibility"
-                  icon={icon}
-                />
-              </InputRightElement>
-            )}
-          </InputGroup>
-        </>
-      ))}
-      <FullWidthButton colorScheme="secondary" onClick={handleRegister}>
-        {t('common.signUp')}
-      </FullWidthButton>
-    </RegisterFormControl>
+          ))}
+          <FullWidthButton colorScheme="secondary" onClick={handleSubmit}>
+            {t('common.signUp')}
+          </FullWidthButton>
+        </InputsWrapper>
+      )}
+    </Formik>
   );
 };

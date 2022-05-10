@@ -9,7 +9,7 @@ import { RegistrationFooter } from './RegistrationFooter';
 
 export const RegisterFormContainer = () => {
   return (
-    <AuthSection height="37.75rem">
+    <AuthSection>
       <BlackMarketLogo width={174} height={31} />
       <RegisterForm />
       <RegistrationFooter />

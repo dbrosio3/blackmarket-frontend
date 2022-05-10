@@ -1,6 +1,6 @@
-import { chakra, FormControl } from '@chakra-ui/react';
+import { chakra, Wrap } from '@chakra-ui/react';
 
-export const RegisterFormControl = chakra(FormControl, {
+export const InputsWrapper = chakra(Wrap, {
   baseStyle: {
     width: '100%',
     marginTop: '1.75rem',
