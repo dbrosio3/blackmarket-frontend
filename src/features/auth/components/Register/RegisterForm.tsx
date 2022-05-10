@@ -54,7 +54,7 @@ export const RegisterForm = () => {
       validationSchema={registerFormikSchema}
       onSubmit={handleRegistration}
     >
-      {({ handleSubmit }) => (
+      {({ handleSubmit, isValid }) => (
         <>
           <InputsWrapper>
             {fields.map(({ name, ...restProps }) => (
@@ -67,7 +67,7 @@ export const RegisterForm = () => {
               />
             ))}
           </InputsWrapper>
-          <FullWidthButton colorScheme="secondary" onClick={handleSubmit}>
+          <FullWidthButton colorScheme="secondary" onClick={handleSubmit} disabled={!isValid}>
             {t('common.signUp')}
           </FullWidthButton>
         </>
