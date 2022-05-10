@@ -34,16 +34,22 @@ const tp = translationWithPrefix('error.validations');
 
 const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
   const field = t(`auth.register.${issue.path}.label`);
-  if (!ctx.data) {
-    return {
-      message: String(tp('fieldRequired', { field })),
-    };
+  const valueIsUndefined = ctx.data === undefined;
+  const valueIsTooShort = issue.code === z.ZodIssueCode.too_small;
+  const valueIsTooLong = issue.code === z.ZodIssueCode.too_big;
+  const fieldIsPassword =
+    issue.code === z.ZodIssueCode.invalid_string && String(issue.path) === 'password';
+  if (valueIsUndefined) {
+    return { message: String(tp('fieldRequired', { field })) };
   }
-  if (issue.code === z.ZodIssueCode.too_small) {
+  if (valueIsTooShort) {
     return { message: String(tp('fieldTooShort', { field, min: issue.minimum })) };
   }
-  if (issue.code === z.ZodIssueCode.too_big) {
+  if (valueIsTooLong) {
     return { message: String(tp('fieldTooLong', { field, max: issue.maximum })) };
+  }
+  if (fieldIsPassword) {
+    return { message: String(tp('passwordInvalid')) };
   }
   return { message: String(tp('fieldInvalid', { field })) };
 };

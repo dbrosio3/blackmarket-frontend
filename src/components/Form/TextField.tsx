@@ -16,11 +16,14 @@ type Props = {
 export const TextField: React.FC<Props> = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
+  // simple condition to add spacing when the help text is too long
+  const errorMessageHeight = meta.error && meta.error.length > 43 ? 8 : 2;
+
   return (
     <FormControl isInvalid={Boolean(meta.error && meta.touched)}>
       <FormLabel>{label}</FormLabel>
       <Field as={InputField} {...field} {...props} />
-      <FormErrorMessage h={2}>{meta.error}</FormErrorMessage>
+      <FormErrorMessage h={errorMessageHeight}>{meta.error}</FormErrorMessage>
     </FormControl>
   );
 };

@@ -50,8 +50,9 @@
     "validations": {
       "fieldInvalid": "{{field}} is invalid",
       "fieldRequired": "{{field}} is required",
-      "fieldTooShort": "{{field}} must be longer than {{min}} characters",
-      "fieldTooLong": "{{field}} cannot be longer than {{max}} characters"
+      "fieldTooShort": "{{field}} must be {{min}} characters or longer",
+      "fieldTooLong": "{{field}} cannot be longer than {{max}} characters",
+      "passwordInvalid": "Must be 8 characters or longer, and contain at least one letter and one number"
     }
   }
 }
