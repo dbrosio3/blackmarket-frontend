@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { InputGroup, Input, InputProps, InputRightElement, IconButton } from '@chakra-ui/react';
 
 import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
+import { VisibilityOn } from '@styles/theme/components/Icons/VisibilityOn';
 
 export const PasswordField: React.FC<InputProps> = props => {
   const [show, setShow] = useState(false);
@@ -18,7 +19,7 @@ export const PasswordField: React.FC<InputProps> = props => {
           aria-label="Toggle password visibility"
           onClick={toggleVisibility}
         >
-          {show ? '<VisibilityOn />' : <VisibilityOff />}
+          {show ? <VisibilityOn /> : <VisibilityOff />}
         </IconButton>
       </InputRightElement>
     </InputGroup>
