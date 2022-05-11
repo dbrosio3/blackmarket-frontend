@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 
 import { Container, FormLabel, Input } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 
 import { FullWidthButton } from '@/styles/theme/components/Buttons';
 
 import { LoginFormControl } from './LoginFormControl.styles';
 
-const fields = [
-  {
-    key: 'userId',
-    label: 'Email or telephone number',
-    type: 'text',
-    placeholder: 'Type your email or telephone',
-  },
-  { key: 'password', label: 'Password', type: 'password', placeholder: 'Type your password' },
-];
+const fields = [{ key: 'userId', type: 'text' }, { key: 'password', type: 'password' }];
 
 interface CredentialsFormState {
   userId: string;
@@ -22,6 +15,8 @@ interface CredentialsFormState {
 }
 
 export const LoginForm = () => {
+  const { t } = useTranslation();
+
   const [credentials, setCredentials] = useState<CredentialsFormState>({
     userId: '',
     password: '',
@@ -33,17 +28,22 @@ export const LoginForm = () => {
   return (
     <>
       <LoginFormControl>
-        {fields.map(({ key, label, ...inputProps }) => (
+        {fields.map(({ key, ...inputProps }) => (
           <>
-            <FormLabel htmlFor={key}>{label}</FormLabel>
-            <Input id={key} onChange={handleInputChange} {...inputProps} />
+            <FormLabel htmlFor={key}> {t(`auth.register.${key}.label`)}</FormLabel>
+            <Input
+              id={key}
+              onChange={handleInputChange}
+              placeholder={t(`auth.login.${key}.placeholder`)}
+              {...inputProps}
+            />
           </>
         ))}
-        <FullWidthButton colorScheme="secondary">Log in</FullWidthButton>
+        <FullWidthButton colorScheme="secondary">{t('common.logIn')}</FullWidthButton>
       </LoginFormControl>
       <Container w="100%" mt="2.75rem">
         <FullWidthButton colorScheme="lightblue" variant="link">
-          I forgot my password
+          {t('auth.login.forgotPassword')}
         </FullWidthButton>
       </Container>
     </>

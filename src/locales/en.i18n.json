@@ -1,0 +1,40 @@
+{
+  "common": {
+    "logIn": "Log in",
+    "signUp": "Sign up"
+  },
+  "auth": {
+    "login": {
+      "forgotPassword": "I forgot my password",
+      "dontHaveAccount": "Don't have an account?",
+      "userId": {
+        "label": "Email or telephone number",
+        "placeholder": "Type your email or telephone"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Type your password"
+      }
+    },
+    "register": {
+      "userId": {
+        "label": "Email or telephone number",
+        "placeholder": "Type your email or telephone"
+      },
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Type your full name"
+      },
+      "userName": {
+        "label": "User Name",
+        "placeholder": "Type your user name"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Type your password"
+      },
+      "termsAndConditionsText": "By signing up, you accept our <0>Conditions</0>, the <1>Data Policy</1> and the <2>Cookies Policy</2>.",
+      "alreadyHaveAccount": "Already have an account? <0>Log in</0>"
+    }
+  }
+}
