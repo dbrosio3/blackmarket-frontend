@@ -10,7 +10,6 @@ import { RegistrationData } from '@features/auth/types';
 import { registerFormikSchema } from '@features/auth/utils/registerFormSchema';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
-import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 
 import { InputsWrapper } from './InputsWrapper';
 
@@ -18,7 +17,7 @@ const fields = [
   { name: 'userId', type: 'email' },
   { name: 'fullName', type: 'text' },
   { name: 'userName', type: 'text' },
-  { name: 'password', type: 'password', icon: <VisibilityOff /> },
+  { name: 'password', type: 'password' },
 ];
 
 export const RegisterForm = () => {
