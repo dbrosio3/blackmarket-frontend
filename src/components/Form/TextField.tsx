@@ -5,15 +5,16 @@ import { Field, useField } from 'formik';
 
 import { InputField } from './InputField';
 
-type Props = {
-  key: string;
+type TextFieldProps = {
   name: string;
   label: string;
   placeholder: string;
   icon?: ReactNode;
 };
 
-export const TextField: React.FC<Props> = ({ label, ...props }) => {
+export const TextField: React.FC<TextFieldProps> = ({ label, ...props }) => {
+  console.table(props);
+
   const [field, meta] = useField(props);
 
   // simple condition to add spacing when the help text is too long

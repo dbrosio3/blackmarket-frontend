@@ -1,16 +1,17 @@
 import React, { ReactNode } from 'react';
 
-import { InputGroup, Input, InputRightElement, IconButton } from '@chakra-ui/react';
+import { InputGroup, Input, InputProps, InputRightElement, IconButton } from '@chakra-ui/react';
 
-type Props = {
-  key: string;
-  name: string;
-  label: string;
-  placeholder: string;
+interface InputFieldProps extends InputProps {
   icon?: ReactNode;
-};
+}
 
-export const InputField: React.FC<Props> = ({ name, placeholder, icon, ...restProps }) => (
+export const InputField: React.FC<InputFieldProps> = ({
+  name,
+  placeholder,
+  icon,
+  ...restProps
+}) => (
   <InputGroup>
     <Input id={name} placeholder={placeholder} {...restProps} />
     {icon && (
