@@ -12,47 +12,63 @@ import {
   USERNAME_MIN_LENGTH,
 } from './constants';
 
-/* schema */
-export const registerFormSchema = z.object({
-  userId: z.string().email(),
-  fullName: z
-    .string()
-    .min(FULL_NAME_MIN_LENGTH)
-    .max(FULL_NAME_MAX_LENGTH),
-  userName: z
-    .string()
-    .min(USERNAME_MIN_LENGTH)
-    .max(USERNAME_MAX_LENGTH),
-  password: z.string().regex(PASSWORD_REGEX),
-});
-
-/* schema adapted to formik */
-export const registerFormikSchema = toFormikValidationSchema(registerFormSchema);
+enum Errors {
+  REQUIRED = 'fieldRequired',
+  INVALID = 'fieldInvalid',
+  TOO_SHORT = 'fieldTooShort',
+  TOO_LONG = 'fieldTooLong',
+}
+enum Fields {
+  USER_ID = 'userId',
+  FULL_NAME = 'fullName',
+  USER_NAME = 'userName',
+  PASSWORD = 'password',
+}
 
 /* localized error messages */
 const tp = translationWithPrefix('error.validations');
 
-const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
-  const field = t(`auth.register.${issue.path}.label`);
-  const valueIsUndefined = ctx.data === undefined;
-  const valueIsTooShort = issue.code === z.ZodIssueCode.too_small;
-  const valueIsTooLong = issue.code === z.ZodIssueCode.too_big;
-  const fieldIsPassword =
-    issue.code === z.ZodIssueCode.invalid_string && String(issue.path) === 'password';
-  if (valueIsUndefined) {
-    return { message: String(tp('fieldRequired', { field })) };
-  }
-  if (valueIsTooShort) {
-    return { message: String(tp('fieldTooShort', { field, min: issue.minimum })) };
-  }
-  if (valueIsTooLong) {
-    return { message: String(tp('fieldTooLong', { field, max: issue.maximum })) };
-  }
-  if (fieldIsPassword) {
-    return { message: String(tp('passwordInvalid')) };
-  }
-  return { message: String(tp('fieldInvalid', { field })) };
-};
+const getLocalizedMessage = (key: Errors, field: Fields, value?: object) =>
+  String(tp(key, { field: t(`auth.register.${field}.label`), ...value }));
 
-/* setup */
-z.setErrorMap(customErrorMap);
+const getErrorConfig = (key: Errors, field: Fields, value?: object) => ({
+  message: getLocalizedMessage(key, field, value),
+});
+
+const getRequiredAndInvalidConfig = (field: Fields) => ({
+  required_error: getLocalizedMessage(Errors.REQUIRED, field),
+  invalid_type_error: getLocalizedMessage(Errors.INVALID, field),
+});
+
+/* schema */
+export const registerFormSchema = z.object({
+  [Fields.USER_ID]: z
+    .string(getRequiredAndInvalidConfig(Fields.USER_ID))
+    .email(getErrorConfig(Errors.INVALID, Fields.USER_ID)),
+  [Fields.FULL_NAME]: z
+    .string(getRequiredAndInvalidConfig(Fields.FULL_NAME))
+    .min(
+      FULL_NAME_MIN_LENGTH,
+      getErrorConfig(Errors.TOO_SHORT, Fields.FULL_NAME, { min: FULL_NAME_MIN_LENGTH })
+    )
+    .max(
+      FULL_NAME_MAX_LENGTH,
+      getErrorConfig(Errors.TOO_SHORT, Fields.FULL_NAME, { max: FULL_NAME_MAX_LENGTH })
+    ),
+  [Fields.USER_NAME]: z
+    .string(getRequiredAndInvalidConfig(Fields.USER_NAME))
+    .min(
+      USERNAME_MIN_LENGTH,
+      getErrorConfig(Errors.TOO_SHORT, Fields.USER_NAME, { min: USERNAME_MIN_LENGTH })
+    )
+    .max(
+      USERNAME_MAX_LENGTH,
+      getErrorConfig(Errors.TOO_SHORT, Fields.USER_NAME, { max: USERNAME_MAX_LENGTH })
+    ),
+  [Fields.PASSWORD]: z
+    .string(getRequiredAndInvalidConfig(Fields.PASSWORD))
+    .regex(PASSWORD_REGEX, { message: String(tp('passwordInvalid')) }),
+});
+
+/* schema adapted to formik */
+export const registerFormikSchema = toFormikValidationSchema(registerFormSchema);
