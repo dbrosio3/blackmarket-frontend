@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { PATHS } from '@/routes/paths';
 
@@ -9,8 +10,9 @@ import { Register } from './Register';
 export const AuthRoutes = () => {
   return (
     <Routes>
-      <Route path={PATHS.REGISTER} element={<Register />} />
       <Route path={PATHS.LOGIN} element={<Login />} />
+      <Route path={PATHS.REGISTER} element={<Register />} />
+      <Route path="*" element={<Navigate to={PATHS.LOGIN} />} />
     </Routes>
   );
 };

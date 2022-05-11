@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { Dashboard, MockRoute } from '@features/misc';

@@ -5,4 +5,7 @@ export enum PATHS {
   REGISTER = 'sign-up',
   APP = 'app',
   MOCK_ROUTE = 'mockRoute',
+  TERMS_AND_CONDITIONS = '#',
+  PRIVACY_POLICY = '#',
+  COOKIES = '#',
 }
