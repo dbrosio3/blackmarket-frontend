@@ -1,7 +1,7 @@
-import { t } from 'i18next';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
+import i18n from '@/lib/i18n';
 import { translationWithPrefix } from '@/utils/translationWithPrefix';
 
 import {
@@ -29,7 +29,7 @@ enum Fields {
 const tp = translationWithPrefix('error.validations');
 
 const getLocalizedMessage = (key: Errors, field: Fields, value?: object) =>
-  String(tp(key, { field: t(`auth.register.${field}.label`), ...value }));
+  String(tp(key, { field: i18n.t(`auth.register.${field}.label`), ...value }));
 
 const getErrorConfig = (key: Errors, field: Fields, value?: object) => ({
   message: getLocalizedMessage(key, field, value),
