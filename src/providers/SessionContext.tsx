@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
+import { errorHandler } from '@/lib/errorHandler';
 import { JustChildrenProp } from '@/types';
 import storage from '@/utils/storage';
 import { registerWithEmailAndPassword } from '@features/auth';
@@ -40,11 +41,6 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
     setSession(newSession);
   };
 
-  const loadSession = useCallback(() => {
-    const storedSession = storage.getSession();
-    if (storedSession) setSession(storedSession);
-  }, []);
-
   const login = () => {
     alert('login');
   };
@@ -68,6 +64,16 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
     storage.clearSession();
     setSession(defaultSessionState);
   };
+
+  const loadSession = useCallback(() => {
+    try {
+      const storedSession = storage.getSession();
+      if (storedSession) setSession(storedSession);
+    } catch (error) {
+      errorHandler.reportError(error);
+      setSession(defaultSessionState);
+    }
+  }, []);
 
   useEffect(() => {
     loadSession();

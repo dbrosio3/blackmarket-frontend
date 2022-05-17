@@ -4,13 +4,13 @@ const storagePrefix = 'blackmarket_';
 
 const storage = {
   getSession: () => {
-    return JSON.parse(window.sessionStorage.getItem(`${storagePrefix}session`) as string);
+    return JSON.parse(window.localStorage.getItem(`${storagePrefix}session`) as string);
   },
   setSession: (session: Session) => {
-    window.sessionStorage.setItem(`${storagePrefix}session`, JSON.stringify(session));
+    window.localStorage.setItem(`${storagePrefix}session`, JSON.stringify(session));
   },
   clearSession: () => {
-    window.sessionStorage.removeItem(`${storagePrefix}session`);
+    window.localStorage.removeItem(`${storagePrefix}session`);
   },
 };
 
