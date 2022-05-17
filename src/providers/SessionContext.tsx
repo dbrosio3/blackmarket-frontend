@@ -15,11 +15,13 @@ interface ISessionContext {
 
 const SessionContext = createContext({} as ISessionContext);
 
+const defaultSessionState = {
+  user: undefined,
+  state: SessionState.LOCKED,
+};
+
 const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
-  const [session, setSession] = useState<Session>({
-    user: undefined,
-    state: SessionState.LOCKED,
-  });
+  const [session, setSession] = useState<Session>(defaultSessionState);
 
   const isAuthenticated = session.state === SessionState.UNLOCKED;
 
@@ -51,7 +53,7 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
     const response = await registerWithEmailAndPassword({
       user: {
         email: values.userId,
-        fullname: values.fullName,
+        name: values.fullName,
         nickname: values.userName,
         password: values.password,
       },
@@ -59,10 +61,13 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
 
     handleAuthResponse(response);
 
-    return response.data.data.nickname;
+    return response.data.data.name;
   };
 
-  const logout = () => {};
+  const logout = () => {
+    storage.clearSession();
+    setSession(defaultSessionState);
+  };
 
   useEffect(() => {
     loadSession();
