@@ -1,4 +1,4 @@
-import HttpStatusCode from '@/types/HttpStatusCode';
+import { AxiosRequestHeaders } from 'axios';
 
 export type UserData = {
   id: number;
@@ -30,8 +30,8 @@ export type AuthPayload = {
 };
 
 export type AuthResponse = {
-  status: HttpStatusCode;
-  headers: any; //TODO: specify
+  status: number;
+  headers: AxiosRequestHeaders;
   data: AuthPayload;
 };
 
