@@ -30,7 +30,6 @@ export const LoginForm = () => {
   const onSuccess = (name: string) =>
     toast({
       title: t('auth.login.success.title', { name }),
-      description: t('auth.login.success.description'),
       status: 'success',
       duration: 9000,
       isClosable: true,
@@ -47,6 +46,15 @@ export const LoginForm = () => {
       setIsLoggingIn(false);
     }
   };
+
+  const handleResetPassword = () =>
+    toast({
+      title: t('error.notImplementedYet'),
+      status: 'warning',
+      duration: 9000,
+      isClosable: true,
+    });
+
   return (
     <Formik
       initialValues={initialValues}
@@ -55,7 +63,7 @@ export const LoginForm = () => {
     >
       {({ handleSubmit, isValid }) => (
         <>
-          <InputsWrapper mt={10}>
+          <InputsWrapper mt={12}>
             {fields.map(({ name, ...restProps }) => (
               <TextField
                 key={name}
@@ -76,7 +84,7 @@ export const LoginForm = () => {
             {t('common.logIn')}
           </FullWidthButton>
           <Container w="100%" mt="2.75rem">
-            <FullWidthButton colorScheme="lightblue" variant="link">
+            <FullWidthButton colorScheme="lightblue" variant="link" onClick={handleResetPassword}>
               {t('auth.login.forgotPassword')}
             </FullWidthButton>
           </Container>
