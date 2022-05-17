@@ -5,7 +5,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter } from 'react-router-dom';
 
 import { JustChildrenProp } from '@/types';
-import { ErrorFallback } from '@components/ErrorFallback';
+import { ErrorFallback } from '@components/Misc';
 import { CartProvider } from '@providers/CartContext';
 import { ProductsProvider } from '@providers/ProductsContext';
 import { SessionProvider } from '@providers/SessionContext';
