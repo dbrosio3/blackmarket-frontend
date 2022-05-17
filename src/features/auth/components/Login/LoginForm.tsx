@@ -1,51 +1,87 @@
 import React, { useState } from 'react';
 
-import { Container, FormLabel, Input } from '@chakra-ui/react';
+import { Container, useToast } from '@chakra-ui/react';
+import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 
+import { errorHandler } from '@/lib/errorHandler';
 import { FullWidthButton } from '@/styles/theme/components/Buttons';
+import { TextField } from '@components/Form';
+import { LoginCredentials } from '@features/auth/types';
+import { loginFormikSchema } from '@features/auth/utils/loginFormSchema';
+import { useSession } from '@providers/SessionContext';
 
-import { LoginFormControl } from './LoginFormControl.styles';
+import { InputsWrapper } from '../common/InputsWrapper';
 
-const fields = [{ key: 'userId', type: 'text' }, { key: 'password', type: 'password' }];
-
-interface CredentialsFormState {
-  userId: string;
-  password: string;
-}
+const fields = [{ name: 'userId', type: 'text' }, { name: 'password', type: 'password' }];
 
 export const LoginForm = () => {
   const { t } = useTranslation();
+  const { login } = useSession();
+  const toast = useToast();
 
-  const [credentials, setCredentials] = useState<CredentialsFormState>({
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  const initialValues: LoginCredentials = {
     userId: '',
     password: '',
-  });
+  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  const onSuccess = (name: string) =>
+    toast({
+      title: t('auth.login.success.title', { name }),
+      description: t('auth.login.success.description'),
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    });
 
+  const handleLogin = async (values: LoginCredentials) => {
+    try {
+      setIsLoggingIn(true);
+      const name = await login(values);
+      onSuccess(name);
+    } catch (error) {
+      errorHandler.reportError(error);
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
   return (
-    <>
-      <LoginFormControl>
-        {fields.map(({ key, ...inputProps }) => (
-          <>
-            <FormLabel htmlFor={key}> {t(`auth.register.${key}.label`)}</FormLabel>
-            <Input
-              id={key}
-              onChange={handleInputChange}
-              placeholder={t(`auth.login.${key}.placeholder`)}
-              {...inputProps}
-            />
-          </>
-        ))}
-        <FullWidthButton colorScheme="secondary">{t('common.logIn')}</FullWidthButton>
-      </LoginFormControl>
-      <Container w="100%" mt="2.75rem">
-        <FullWidthButton colorScheme="lightblue" variant="link">
-          {t('auth.login.forgotPassword')}
-        </FullWidthButton>
-      </Container>
-    </>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={loginFormikSchema}
+      onSubmit={handleLogin}
+    >
+      {({ handleSubmit, isValid }) => (
+        <>
+          <InputsWrapper mt={10}>
+            {fields.map(({ name, ...restProps }) => (
+              <TextField
+                key={name}
+                name={name}
+                label={t(`auth.login.${name}.label`)}
+                placeholder={t(`auth.login.${name}.placeholder`)}
+                {...restProps}
+              />
+            ))}
+          </InputsWrapper>
+          <FullWidthButton
+            colorScheme="secondary"
+            onClick={handleSubmit}
+            disabled={!isValid || isLoggingIn}
+            isLoading={isLoggingIn}
+            loadingText={t('auth.login.signUpLoadingText')}
+          >
+            {t('common.logIn')}
+          </FullWidthButton>
+          <Container w="100%" mt="2.75rem">
+            <FullWidthButton colorScheme="lightblue" variant="link">
+              {t('auth.login.forgotPassword')}
+            </FullWidthButton>
+          </Container>
+        </>
+      )}
+    </Formik>
   );
 };

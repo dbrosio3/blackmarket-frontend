@@ -16,7 +16,8 @@
       "password": {
         "label": "Password",
         "placeholder": "Type your password"
-      }
+      },
+      "signUpLoadingText": "Logging in..."
     },
     "register": {
       "userId": {

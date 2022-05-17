@@ -50,3 +50,13 @@ export type RegistrationData = {
   userName: string;
   password: string;
 };
+
+export type LoginCredentialsDTO = {
+  email: string;
+  password: string;
+};
+
+export type LoginCredentials = {
+  userId: string;
+  password: string;
+};
