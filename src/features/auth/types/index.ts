@@ -38,7 +38,7 @@ export type AuthResponse = {
 export type RegisterCredentialsDTO = {
   user: {
     email: string;
-    fullname: string;
+    name: string;
     nickname: string;
     password: string;
   };

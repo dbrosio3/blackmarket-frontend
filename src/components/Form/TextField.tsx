@@ -12,6 +12,7 @@ type TextFieldProps = {
   label: string;
   placeholder: string;
   icon?: ReactNode;
+  autoComplete?: string;
 };
 
 export const TextField: React.FC<TextFieldProps> = ({ label, ...props }) => {

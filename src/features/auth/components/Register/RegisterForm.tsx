@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useToast } from '@chakra-ui/react';
 import { Formik } from 'formik';
@@ -25,6 +25,8 @@ export const RegisterForm = () => {
   const { register } = useSession();
   const toast = useToast();
 
+  const [isSigningUp, setIsSigningUp] = useState(false);
+
   const initialValues: RegistrationData = {
     userId: '',
     fullName: '',
@@ -32,9 +34,9 @@ export const RegisterForm = () => {
     password: '',
   };
 
-  const onSuccess = (_nickname: string) =>
+  const onSuccess = (name: string) =>
     toast({
-      title: t('auth.register.success.title'),
+      title: t('auth.register.success.title', { name }),
       description: t('auth.register.success.description'),
       status: 'success',
       duration: 9000,
@@ -43,10 +45,13 @@ export const RegisterForm = () => {
 
   const handleRegistration = async (values: RegistrationData) => {
     try {
-      const nickname = await register(values);
-      onSuccess(nickname);
+      setIsSigningUp(true);
+      const name = await register(values);
+      onSuccess(name);
     } catch (error) {
       errorHandler.reportError(error);
+    } finally {
+      setIsSigningUp(false);
     }
   };
 
@@ -65,11 +70,18 @@ export const RegisterForm = () => {
                 name={name}
                 label={t(`auth.register.${name}.label`)}
                 placeholder={t(`auth.register.${name}.placeholder`)}
+                autoComplete="new-password"
                 {...restProps}
               />
             ))}
           </InputsWrapper>
-          <FullWidthButton colorScheme="secondary" onClick={handleSubmit} disabled={!isValid}>
+          <FullWidthButton
+            colorScheme="secondary"
+            onClick={handleSubmit}
+            disabled={!isValid || isSigningUp}
+            isLoading={isSigningUp}
+            loadingText={t('auth.register.signUpLoadingText')}
+          >
             {t('common.signUp')}
           </FullWidthButton>
         </>
