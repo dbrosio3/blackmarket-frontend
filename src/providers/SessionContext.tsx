@@ -27,8 +27,8 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
   const isAuthenticated = session.state === SessionState.UNLOCKED;
 
   const handleAuthResponse = ({ data, headers }: AuthResponse) => {
-    const accessToken: string = headers['access-token'];
-    const expiry: number = headers['expiry'];
+    const accessToken = String(headers['access-token']);
+    const expiry = Number(headers.expiry);
 
     const newSession: Session = {
       user: data.data,
