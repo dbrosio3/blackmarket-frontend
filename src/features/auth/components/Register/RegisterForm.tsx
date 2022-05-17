@@ -1,11 +1,11 @@
 import React from 'react';
 
+import { useToast } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import { errorHandler } from '@/lib/errorHandler';
 import { TextField } from '@components/Form/TextField';
-import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegistrationData } from '@features/auth/types';
 import { registerFormikSchema } from '@features/auth/utils/registerFormSchema';
 import { useSession } from '@providers/SessionContext';
@@ -22,7 +22,8 @@ const fields = [
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
-  const { onRegister } = useSession();
+  const { register } = useSession();
+  const toast = useToast();
 
   const initialValues: RegistrationData = {
     userId: '',
@@ -31,17 +32,19 @@ export const RegisterForm = () => {
     password: '',
   };
 
+  const onSuccess = (_nickname: string) =>
+    toast({
+      title: t('auth.register.success.title'),
+      description: t('auth.register.success.description'),
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    });
+
   const handleRegistration = async (values: RegistrationData) => {
     try {
-      await registerWithEmailAndPassword({
-        user: {
-          email: values.userId,
-          fullname: values.fullName,
-          nickname: values.userName,
-          password: values.password,
-        },
-      });
-      onRegister();
+      const nickname = await register(values);
+      onSuccess(nickname);
     } catch (error) {
       errorHandler.reportError(error);
     }
