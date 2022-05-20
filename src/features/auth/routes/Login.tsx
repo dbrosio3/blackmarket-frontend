@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Layout } from '../components/common/Layout';
+import { AuthLayout } from '../components/common/AuthLayout';
 import { LoginFormContainer } from '../components/Login/LoginFormContainer';
 
 export const Login = () => (
-  <Layout>
+  <AuthLayout>
     <LoginFormContainer />
-  </Layout>
+  </AuthLayout>
 );

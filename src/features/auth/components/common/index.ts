@@ -1,2 +1,2 @@
 export * from './AuthSection';
-export * from './Layout';
+export * from './AuthLayout';
