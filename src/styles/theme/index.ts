@@ -20,7 +20,7 @@ const colors = {
   },
   secondary: {
     main: '#00031a',
-    50: '#e5e8ff',
+    50: '#f4f7fa',
     100: '#b8c0ff',
     200: '#8a97ff',
     300: '#446cbc',
