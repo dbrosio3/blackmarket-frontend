@@ -8,7 +8,7 @@ import { NavBarContainer } from './NavBarContainer';
 
 export const NavBar: React.FC<FlexProps> = ({ children }) => (
   <NavBarContainer align="center" justify="center">
-    <MaxWidthWrapper align="center" justify="space-between" wrap="wrap">
+    <MaxWidthWrapper align="center" justify="space-between" wrap="nowrap">
       {children}
     </MaxWidthWrapper>
   </NavBarContainer>

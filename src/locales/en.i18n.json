@@ -5,6 +5,12 @@
     "signUp": "Sign up",
     "refresh": "Refresh"
   },
+  "layout": {
+    "header": {
+      "account": "My Account",
+      "cart": "Shopping Cart"
+    }
+  },
   "auth": {
     "login": {
       "forgotPassword": "I forgot my password",
