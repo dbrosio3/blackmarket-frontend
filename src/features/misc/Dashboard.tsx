@@ -13,7 +13,7 @@ export const Dashboard = () => {
   const { session, logout } = useSession();
 
   return (
-    <Stack h="100%" py={20}>
+    <Stack h="1200px" w="100%" py={20}>
       <Heading>Dashboard</Heading>
       <Textarea h="100%" value={JSON.stringify(session, null, 2)} readOnly />
       <Button onClick={logout}>{t('common.logOut')}</Button>
