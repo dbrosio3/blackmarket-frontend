@@ -32,9 +32,9 @@ export const ThemeButton: ComponentStyleConfig = {
     },
   },
   variants: {
-    outline: {
-      borderColor: 'secondary.500',
-    },
+    outline: props => ({
+      borderColor: props.colorScheme[500] || 'secondary.500',
+    }),
   },
   defaultProps: {
     size: 'md',
