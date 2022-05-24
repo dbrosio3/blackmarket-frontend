@@ -11,6 +11,39 @@
       "cart": "Shopping Cart"
     }
   },
+  "footer": {
+    "restoredFurniture": {
+      "title": "Restored Furniture",
+      "entries": "Entries",
+      "rates": "Rates",
+      "categories": "Categories",
+      "sale": "Sale"
+    },
+    "socialNetworks": {
+      "title": "Stay connected",
+      "instagram": "Instagram",
+      "tikTok": "Tik Tok",
+      "msn": "MSN"
+    },
+    "blackMarket": {
+      "title": "Black Market",
+      "ourHistory": "Our history",
+      "staff": "Staff",
+      "workWithUs": "Work with us"
+    },
+    "support": {
+      "title": "Support",
+      "chat": "Chat",
+      "address": "Address"
+    },
+    "newsletter": {
+      "title": "Subscribe to our weekly newsletter!",
+      "label": "Email",
+      "placeholder": "Type your email",
+      "action": "Subscribe",
+      "disclaimer": "By subscribing you agree to receive weekly emails with our latest news and updates."
+    }
+  },
   "auth": {
     "login": {
       "forgotPassword": "I forgot my password",
