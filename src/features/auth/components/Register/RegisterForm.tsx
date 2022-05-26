@@ -1,74 +1,91 @@
 import React, { useState } from 'react';
 
-import { FormLabel, IconButton, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
+import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 
-import { registerWithEmailAndPassword } from '@features/auth/api/register';
+import { errorHandler } from '@/lib/errorHandler';
+import { TextField } from '@components/Form/TextField';
 import { RegistrationData } from '@features/auth/types';
+import { registerFormikSchema } from '@features/auth/utils/registerFormSchema';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
-import { VisibilityOff } from '@styles/theme/components/Icons/VisibilityOff';
 
-import { RegisterFormControl } from './RegisterFormControl.styles';
+import { InputsWrapper } from './InputsWrapper';
 
 const fields = [
-  { key: 'userId', type: 'text' },
-  { key: 'fullName', type: 'text' },
-  { key: 'userName', type: 'text' },
-  { key: 'password', type: 'password', icon: <VisibilityOff /> },
+  { name: 'userId', type: 'email' },
+  { name: 'fullName', type: 'text' },
+  { name: 'userName', type: 'text' },
+  { name: 'password', type: 'password' },
 ];
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
-  const { onRegister } = useSession();
+  const { register } = useSession();
+  const toast = useToast();
 
-  const [userData, setUserData] = useState<RegistrationData>({
+  const [isSigningUp, setIsSigningUp] = useState(false);
+
+  const initialValues: RegistrationData = {
     userId: '',
     fullName: '',
     userName: '',
     password: '',
-  });
-
-  const handleRegister = async () => {
-    // TODO: implement proper registration
-    await registerWithEmailAndPassword({
-      user: userData,
-    });
-    onRegister();
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+  const onSuccess = (name: string) =>
+    toast({
+      title: t('auth.register.success.title', { name }),
+      description: t('auth.register.success.description'),
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    });
+
+  const handleRegistration = async (values: RegistrationData) => {
+    try {
+      setIsSigningUp(true);
+      const name = await register(values);
+      onSuccess(name);
+    } catch (error) {
+      errorHandler.reportError(error);
+    } finally {
+      setIsSigningUp(false);
+    }
+  };
 
   return (
-    <RegisterFormControl>
-      {fields.map(({ key, icon, ...inputProps }) => (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={registerFormikSchema}
+      onSubmit={handleRegistration}
+    >
+      {({ handleSubmit, isValid }) => (
         <>
-          <FormLabel htmlFor={key} mb={0.75}>
-            {t(`auth.register.${key}.label`)}
-          </FormLabel>
-          <InputGroup>
-            <Input
-              id={key}
-              onChange={handleInputChange}
-              placeholder={t(`auth.register.${key}.placeholder`)}
-              {...inputProps}
-            />
-            {icon && (
-              <InputRightElement>
-                <IconButton
-                  variant="unstyled"
-                  aria-label="Toggle password visibility"
-                  icon={icon}
-                />
-              </InputRightElement>
-            )}
-          </InputGroup>
+          <InputsWrapper>
+            {fields.map(({ name, ...restProps }) => (
+              <TextField
+                key={name}
+                name={name}
+                label={t(`auth.register.${name}.label`)}
+                placeholder={t(`auth.register.${name}.placeholder`)}
+                autoComplete="new-password"
+                {...restProps}
+              />
+            ))}
+          </InputsWrapper>
+          <FullWidthButton
+            colorScheme="secondary"
+            onClick={handleSubmit}
+            disabled={!isValid || isSigningUp}
+            isLoading={isSigningUp}
+            loadingText={t('auth.register.signUpLoadingText')}
+          >
+            {t('common.signUp')}
+          </FullWidthButton>
         </>
-      ))}
-      <FullWidthButton colorScheme="secondary" disabled onClick={handleRegister}>
-        {t('common.signUp')}
-      </FullWidthButton>
-    </RegisterFormControl>
+      )}
+    </Formik>
   );
 };

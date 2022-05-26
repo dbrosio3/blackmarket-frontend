@@ -16,6 +16,7 @@ export const ThemeButton: ComponentStyleConfig = {
         opacity: 0.75,
       },
     },
+    _focus: { boxShadow: 'none' },
   },
   sizes: {
     sm: {

@@ -6,7 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { PATHS } from '@/routes/paths';
 
-export const RegistrationFooter = () => (
+export const RegisterFooter = () => (
   <Container w="110%" mt="1rem" px="0" mx="-0.5rem">
     <Text align="center">
       <Trans i18nKey="auth.register.termsAndConditionsText">

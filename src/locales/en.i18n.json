@@ -1,7 +1,9 @@
 {
   "common": {
     "logIn": "Log in",
-    "signUp": "Sign up"
+    "logOut": "Log out",
+    "signUp": "Sign up",
+    "refresh": "Refresh"
   },
   "auth": {
     "login": {
@@ -34,7 +36,25 @@
         "placeholder": "Type your password"
       },
       "termsAndConditionsText": "By signing up, you accept our <0>Conditions</0>, the <1>Data Policy</1> and the <2>Cookies Policy</2>.",
-      "alreadyHaveAccount": "Already have an account? <0>Log in</0>"
+      "alreadyHaveAccount": "Already have an account? <0>Log in</0>",
+      "signUpLoadingText": "Signing up...",
+      "success": {
+        "title": "Welcome {{name}}!",
+        "description": "We've succesfully created your account."
+      }
+    }
+  },
+  "error": {
+    "genericError": "An error occurred.",
+    "errorFallback": {
+      "title": "Ooops, something went wrong :( "
+    },
+    "validations": {
+      "fieldInvalid": "{{field}} is invalid",
+      "fieldRequired": "{{field}} is required",
+      "fieldTooShort": "{{field}} must be {{min}} characters or longer",
+      "fieldTooLong": "{{field}} cannot be longer than {{max}} characters",
+      "passwordInvalid": "Must be 8 characters or longer, and contain at least one letter and one number"
     }
   }
 }
