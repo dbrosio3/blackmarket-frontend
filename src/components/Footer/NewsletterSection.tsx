@@ -14,7 +14,7 @@ export const NewsletterSection = () => {
   return (
     <Formik initialValues={{ email: '' }} onSubmit={() => {}}>
       <Container w="100%" maxW="400px" p={0} my={5}>
-        <VStack color="common.white" align="start" w="100%" minW="300px">
+        <VStack color="common.white" align="start" w="100%" minW="250px">
           <Heading as="h5" size={headerSize}>
             {t('footer.newsletter.title')}
           </Heading>
