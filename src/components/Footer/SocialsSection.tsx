@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wrap } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 
 import {
   InstagramIcon,
@@ -10,18 +10,18 @@ import {
 } from '@styles/theme/components/Icons/Socials';
 
 export const SocialsSection = () => (
-  <Wrap color="common.white">
-    <Wrap pl={2}>
+  <Grid color="common.white" templateColumns={'24px 24px 24px 24px'} justifyContent="end" gap={4}>
+    <GridItem>
       <InstagramIcon h={6} w="auto" />
-    </Wrap>
-    <Wrap pl={2}>
+    </GridItem>
+    <GridItem>
       <FacebookIcon h={6} w="auto" />
-    </Wrap>
-    <Wrap pl={2}>
+    </GridItem>
+    <GridItem>
       <TwitterIcon h={6} w="auto" />
-    </Wrap>
-    <Wrap pl={2}>
+    </GridItem>
+    <GridItem>
       <LinkedinIcon h={6} w="auto" />
-    </Wrap>
-  </Wrap>
+    </GridItem>
+  </Grid>
 );
