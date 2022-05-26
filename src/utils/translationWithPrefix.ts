@@ -1,4 +1,6 @@
-import { t, TFunction, TFunctionKeys, TOptions } from 'i18next';
+import { TFunction, TFunctionKeys, TOptions } from 'i18next';
+
+import i18n from '@/lib/i18n';
 
 /**
  * @param prefix string
@@ -7,4 +9,4 @@ import { t, TFunction, TFunctionKeys, TOptions } from 'i18next';
 export const translationWithPrefix = (prefix: string) => (
   suffix: TFunctionKeys,
   options?: TOptions
-): TFunction => t(`${prefix}.${suffix}`, options);
+): TFunction => i18n.t(`${prefix}.${suffix}`, options);
