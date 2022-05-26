@@ -1,54 +1,83 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
-
+import { errorHandler } from '@/lib/errorHandler';
 import { JustChildrenProp } from '@/types';
-import { customToast } from '@/utils/customStandaloneToast';
+import storage from '@/utils/storage';
+import { registerWithEmailAndPassword } from '@features/auth';
+import { AuthResponse, RegistrationData, Session, SessionState } from '@features/auth/types';
 
-enum SessionStates {
-  LOCKED = 'LOCKED',
-  UNLOCKED = 'UNLOCKED',
-}
-
-type Session = {
-  session: {
-    user: string;
-    state: SessionStates.LOCKED | SessionStates.UNLOCKED;
-  };
+interface ISessionContext {
+  session: Session;
   isAuthenticated: boolean;
   login(): void;
   logout(): void;
-  onRegister(): void;
+  register: (registrationValues: RegistrationData) => Promise<string>;
+}
+
+const SessionContext = createContext({} as ISessionContext);
+
+const defaultSessionState = {
+  user: undefined,
+  state: SessionState.LOCKED,
 };
 
-const SessionContext = createContext({} as Session);
-
 const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
-  const { t } = useTranslation();
+  const [session, setSession] = useState<Session>(defaultSessionState);
 
-  const session = {
-    user: '',
-    state: SessionStates.LOCKED,
+  const isAuthenticated = session.state === SessionState.UNLOCKED;
+
+  const handleAuthResponse = ({ data, headers }: AuthResponse) => {
+    const accessToken = String(headers['access-token']);
+    const expiry = Number(headers.expiry);
+
+    const newSession: Session = {
+      user: data.data,
+      state: SessionState.UNLOCKED,
+      token: accessToken,
+      expiration: expiry,
+    };
+
+    storage.setSession(newSession);
+    setSession(newSession);
   };
-
-  // TODO: `isAuthenticated` value should be a derivation of session state
-  const isAuthenticated = false;
 
   const login = () => {
     alert('login');
   };
 
-  const onRegister = () => {
-    customToast({
-      title: t('auth.register.success.title'),
-      description: t('auth.register.success.description'),
-      status: 'success',
-      duration: 9000,
-      isClosable: true,
+  const register = async (values: RegistrationData) => {
+    const response = await registerWithEmailAndPassword({
+      user: {
+        email: values.userId,
+        name: values.fullName,
+        nickname: values.userName,
+        password: values.password,
+      },
     });
+
+    handleAuthResponse(response);
+
+    return response.data.data.name;
   };
 
-  const logout = () => {};
+  const logout = () => {
+    storage.clearSession();
+    setSession(defaultSessionState);
+  };
+
+  const loadSession = useCallback(() => {
+    try {
+      const storedSession = storage.getSession();
+      if (storedSession) setSession(storedSession);
+    } catch (error) {
+      errorHandler.reportError(error);
+      setSession(defaultSessionState);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadSession();
+  }, [loadSession]);
 
   return (
     <SessionContext.Provider
@@ -57,7 +86,7 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
         isAuthenticated,
         login,
         logout,
-        onRegister,
+        register,
       }}
     >
       {children}

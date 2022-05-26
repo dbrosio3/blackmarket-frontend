@@ -1,6 +1,7 @@
 {
   "common": {
     "logIn": "Log in",
+    "logOut": "Log out",
     "signUp": "Sign up",
     "refresh": "Refresh"
   },
@@ -36,8 +37,9 @@
       },
       "termsAndConditionsText": "By signing up, you accept our <0>Conditions</0>, the <1>Data Policy</1> and the <2>Cookies Policy</2>.",
       "alreadyHaveAccount": "Already have an account? <0>Log in</0>",
+      "signUpLoadingText": "Signing up...",
       "success": {
-        "title": "Account created.",
+        "title": "Welcome {{name}}!",
         "description": "We've succesfully created your account."
       }
     }

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import { useToast } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import { errorHandler } from '@/lib/errorHandler';
 import { TextField } from '@components/Form/TextField';
-import { registerWithEmailAndPassword } from '@features/auth/api/register';
 import { RegistrationData } from '@features/auth/types';
 import { registerFormikSchema } from '@features/auth/utils/registerFormSchema';
 import { useSession } from '@providers/SessionContext';
@@ -22,7 +22,10 @@ const fields = [
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
-  const { onRegister } = useSession();
+  const { register } = useSession();
+  const toast = useToast();
+
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
   const initialValues: RegistrationData = {
     userId: '',
@@ -31,19 +34,24 @@ export const RegisterForm = () => {
     password: '',
   };
 
+  const onSuccess = (name: string) =>
+    toast({
+      title: t('auth.register.success.title', { name }),
+      description: t('auth.register.success.description'),
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    });
+
   const handleRegistration = async (values: RegistrationData) => {
     try {
-      await registerWithEmailAndPassword({
-        user: {
-          email: values.userId,
-          fullname: values.fullName,
-          nickname: values.userName,
-          password: values.password,
-        },
-      });
-      onRegister();
+      setIsSigningUp(true);
+      const name = await register(values);
+      onSuccess(name);
     } catch (error) {
       errorHandler.reportError(error);
+    } finally {
+      setIsSigningUp(false);
     }
   };
 
@@ -62,11 +70,18 @@ export const RegisterForm = () => {
                 name={name}
                 label={t(`auth.register.${name}.label`)}
                 placeholder={t(`auth.register.${name}.placeholder`)}
+                autoComplete="new-password"
                 {...restProps}
               />
             ))}
           </InputsWrapper>
-          <FullWidthButton colorScheme="secondary" onClick={handleSubmit} disabled={!isValid}>
+          <FullWidthButton
+            colorScheme="secondary"
+            onClick={handleSubmit}
+            disabled={!isValid || isSigningUp}
+            isLoading={isSigningUp}
+            loadingText={t('auth.register.signUpLoadingText')}
+          >
             {t('common.signUp')}
           </FullWidthButton>
         </>
