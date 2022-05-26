@@ -1,25 +1,8 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-import { InputGroup, Input, InputProps, InputRightElement, IconButton } from '@chakra-ui/react';
+import { Input, InputProps } from '@chakra-ui/react';
 
-interface InputFieldProps extends InputProps {
-  icon?: ReactNode;
-}
+import { PasswordField } from './PasswordField';
 
-export const InputField: React.FC<InputFieldProps> = ({
-  name,
-  placeholder,
-  icon,
-  ...restProps
-}) => (
-  <InputGroup>
-    <Input id={name} placeholder={placeholder} {...restProps} />
-    {icon && (
-      <InputRightElement>
-        <IconButton variant="unstyled" aria-label="Toggle password visibility">
-          {icon}
-        </IconButton>
-      </InputRightElement>
-    )}
-  </InputGroup>
-);
+export const InputField: React.FC<InputProps> = props =>
+  props.type === 'password' ? <PasswordField {...props} /> : <Input {...props} />;
