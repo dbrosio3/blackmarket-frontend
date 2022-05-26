@@ -5,7 +5,7 @@ export const ViewPort = chakra(Container, {
     w: '100vw',
     h: '100vh',
     maxWidth: '100vw',
-    bg: 'secondary.900',
+    bg: 'blue.900',
     backgroundSize: 'cover',
   },
 });

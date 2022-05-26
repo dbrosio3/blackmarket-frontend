@@ -22,7 +22,7 @@ export const NewsletterSection = () => {
             label={t('footer.newsletter.label')}
             placeholder={t('footer.newsletter.placeholder')}
             name={'email'}
-            styles={{ bg: 'common.white', color: 'secondary.main' }}
+            styles={{ bg: 'common.white', color: 'blue.main' }}
           />
           <FullWidthButton variant="outline" borderColor="common.white">
             {t('footer.newsletter.action')}

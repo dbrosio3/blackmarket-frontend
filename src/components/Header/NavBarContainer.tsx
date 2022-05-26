@@ -5,6 +5,6 @@ export const NavBarContainer = chakra(Flex, {
     width: '100%',
     height: '91px',
     padding: 9,
-    backgroundColor: 'secondary.main',
+    backgroundColor: 'blue.main',
   },
 });

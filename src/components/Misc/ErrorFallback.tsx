@@ -7,12 +7,12 @@ export const ErrorFallback = () => {
   const { t } = useTranslation();
 
   return (
-    <Center bg="common.white" h="100vh" color="secondary.main">
+    <Center bg="common.white" h="100vh" color="blue.main">
       <Stack>
         <Heading mb={4}>{t('error.errorFallback.title')}</Heading>
         <Center>
           <Button
-            colorScheme="primary"
+            colorScheme="green"
             onClick={() => window.location.assign(window.location.origin)}
           >
             {t('common.refresh')}

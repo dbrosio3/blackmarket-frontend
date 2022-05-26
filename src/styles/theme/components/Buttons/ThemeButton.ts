@@ -40,7 +40,7 @@ export const ThemeButton: ComponentStyleConfig = {
   },
   variants: {
     outline: props => ({
-      borderColor: props.colorScheme[500] || 'secondary.500',
+      borderColor: props.colorScheme[500] || 'blue.500',
     }),
   },
   defaultProps: {

@@ -6,7 +6,7 @@ import { ThemeLink } from './components/Link/ThemeLink';
 
 const colors = {
   common: { white: '#FFFFFF', black: '#000000' },
-  primary: {
+  green: {
     main: '#52c675',
     50: '#ecf9f0',
     100: '#e3fceb',
@@ -19,7 +19,7 @@ const colors = {
     800: '#1c6032',
     900: '#0c3b1d',
   },
-  secondary: {
+  blue: {
     main: '#00031a',
     50: '#f4f7fa',
     100: '#b8c0ff',

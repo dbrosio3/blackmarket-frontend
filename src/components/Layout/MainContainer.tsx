@@ -5,12 +5,7 @@ import { chakra, Flex } from '@chakra-ui/react';
 import { JustChildrenProp } from '@/types';
 
 export const MainContainer: React.FC<JustChildrenProp> = ({ children }) => (
-  <MainContainerStyled
-    className="MainContainer"
-    direction="column"
-    align="center"
-    bg="secondary.50"
-  >
+  <MainContainerStyled className="MainContainer" direction="column" align="center" bg="blue.50">
     {children}
   </MainContainerStyled>
 );
