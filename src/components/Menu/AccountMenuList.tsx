@@ -2,14 +2,10 @@ import React from 'react';
 
 import { MenuList, MenuItem, chakra } from '@chakra-ui/react';
 
-const isLastItem = <T,>(items: Array<T>, index: number) => index === items.length - 1;
-
 export const AccountMenuList: React.FC<{ items: Array<string> }> = ({ items }) => (
   <StyledMenuList>
-    {items.map((item, index) => (
-      <StyledMenuItem key={item} className={isLastItem(items, index) ? 'LastMenuItem' : ''}>
-        {item}
-      </StyledMenuItem>
+    {items.map(item => (
+      <StyledMenuItem key={item}>{item}</StyledMenuItem>
     ))}
   </StyledMenuList>
 );
@@ -27,8 +23,12 @@ const StyledMenuList = chakra(MenuList, {
 
 const StyledMenuItem = chakra(MenuItem, {
   baseStyle: {
-    borderBottom: '1px solid white',
-    _focus: { bg: 'secondary.300', '.LastMenuItem': { borderBottomRadius: 'lg' } },
-    _active: { bg: 'secondary.400', '.LastMenuItem': { borderBottomRadius: 'lg' } },
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
+    _last: {
+      borderBottomRadius: 'lg',
+    },
+    _focus: { bg: 'secondary.300' },
+    _active: { bg: 'secondary.400' },
   },
 });
