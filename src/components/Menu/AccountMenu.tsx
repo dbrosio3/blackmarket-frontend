@@ -5,12 +5,22 @@ import { Menu, Text, MenuButton } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { NavBarWidget } from '@components/Widget';
+import { useSession } from '@providers/SessionContext';
 
 import { AccountMenuList } from './AccountMenuList';
 import { UserAvatar } from './UserAvatar';
 
 export const AccountMenu = () => {
   const { t } = useTranslation();
+  const { logout } = useSession();
+
+  const getOrientedChevron = (isOpen: boolean) =>
+    isOpen ? (
+      <ChevronUpIcon height="1.5rem" width="auto" />
+    ) : (
+      <ChevronDownIcon height="1.5rem" width="auto" />
+    );
+
   return (
     <Menu gutter={0} matchWidth>
       {({ isOpen }) => (
@@ -18,13 +28,7 @@ export const AccountMenu = () => {
           <MenuButton
             as={NavBarWidget}
             leftIcon={<UserAvatar />}
-            rightIcon={
-              isOpen ? (
-                <ChevronUpIcon height="1.5rem" width="auto" />
-              ) : (
-                <ChevronDownIcon height="1.5rem" width="auto" />
-              )
-            }
+            rightIcon={getOrientedChevron(isOpen)}
             isOpen={isOpen}
             ml={2}
           >
@@ -32,13 +36,13 @@ export const AccountMenu = () => {
           </MenuButton>
           <AccountMenuList
             items={[
-              'Recent Searches',
-              'Direct Messages',
-              'Purchases',
-              'Security',
-              'Configuration',
-              'Help',
-              'Log Out',
+              { label: 'Recent Searches' },
+              { label: 'Direct Messages' },
+              { label: 'Purchases' },
+              { label: 'Security' },
+              { label: 'Configuration' },
+              { label: 'Help' },
+              { label: 'Log Out', action: logout },
             ]}
           />
         </>

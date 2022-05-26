@@ -2,10 +2,17 @@ import React from 'react';
 
 import { MenuList, MenuItem, chakra } from '@chakra-ui/react';
 
-export const AccountMenuList: React.FC<{ items: Array<string> }> = ({ items }) => (
+type Item = {
+  label: string;
+  action?: () => void;
+};
+
+export const AccountMenuList: React.FC<{ items: Array<Item> }> = ({ items }) => (
   <StyledMenuList>
     {items.map(item => (
-      <StyledMenuItem key={item}>{item}</StyledMenuItem>
+      <StyledMenuItem key={item.label} onClick={item.action}>
+        {item.label}
+      </StyledMenuItem>
     ))}
   </StyledMenuList>
 );
