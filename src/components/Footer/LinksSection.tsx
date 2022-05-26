@@ -10,7 +10,7 @@ export const LinksSection = () => {
       templateColumns={{ base: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' }}
       gap={6}
       w="100%"
-      my={5}
+      my={6}
     >
       <GridItem w="100%">
         <VStack color="common.white" align="start" flexGrow={1}>

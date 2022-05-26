@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
-import { Menu, Text, MenuButton } from '@chakra-ui/react';
+import { Menu, Text, MenuButton, useBreakpointValue } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { NavBarWidget } from '@components/Widget';
@@ -13,6 +13,10 @@ import { UserAvatar } from './UserAvatar';
 export const AccountMenu = () => {
   const { t } = useTranslation();
   const { logout } = useSession();
+  const buttonChild = useBreakpointValue({
+    base: null,
+    md: <Text>{t('layout.header.account')}</Text>,
+  });
 
   const getOrientedChevron = (isOpen: boolean) =>
     isOpen ? (
@@ -32,7 +36,7 @@ export const AccountMenu = () => {
             isOpen={isOpen}
             ml={2}
           >
-            <Text>{t('layout.header.account')}</Text>
+            {buttonChild}
           </MenuButton>
           <AccountMenuList
             items={[

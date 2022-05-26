@@ -12,9 +12,9 @@ import { NavBar } from './NavBar';
 export const Header = () => (
   <NavBar className="Header">
     <Flex align="center">
-      <BlackMarketLogo height={34} color="common.white" />
+      <BlackMarketLogo height={{ base: 19, sm: 30, md: 34 }} color="common.white" />
     </Flex>
-    <Flex flexGrow={1} ml={16} alignItems="center" wrap="nowrap">
+    <Flex flexGrow={1} ml={16} alignItems="center" justify="flex-end" wrap="nowrap">
       <SearchBar />
       <AccountMenu />
       <ShoppingCartWidget />
