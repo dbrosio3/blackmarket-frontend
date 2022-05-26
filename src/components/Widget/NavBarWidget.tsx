@@ -9,7 +9,6 @@ interface MenuButtonProps extends ButtonProps {
 export const WidgetButton = forwardRef<MenuButtonProps, 'button'>((props, ref) => (
   <Button
     ref={ref}
-    variant="outline"
     borderBottomRadius={props.isOpen ? 0 : 'lg'}
     size={useBreakpointValue({ base: 'xs', sm: 'sm' })}
     ml={[2, 4, 6]}
@@ -30,12 +29,6 @@ export const NavBarWidget = chakra(WidgetButton, {
     padding: 0,
     color: 'common.white',
     fontWeight: 'normal',
-    _hover: {
-      backgroundColor: 'transparent',
-    },
-    _active: {
-      backgroundColor: 'transparent',
-    },
     '.chakra-button__icon': {
       height: '100%',
       display: 'flex',

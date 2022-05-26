@@ -1,9 +1,21 @@
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const ThemeButton: ComponentStyleConfig = {
-  baseStyle: {
+  baseStyle: props => ({
     fontWeight: 'bold',
     borderRadius: '8px',
+    _active: {
+      outlineColor: props.colorScheme[100] || 'blue.activeOutline',
+      outlineStyle: 'solid',
+      outlineOffset: 0,
+    },
+    _focus: {
+      boxShadow: 'none',
+      outlineOffset: 2,
+      outlineColor: 'blue.focus',
+      outlineStyle: 'dashed',
+      outlineWidth: 3,
+    },
     _disabled: {
       backgroundColor: 'gray.main',
       color: 'gray.600',
@@ -16,8 +28,7 @@ export const ThemeButton: ComponentStyleConfig = {
         opacity: 0.75,
       },
     },
-    _focus: { boxShadow: 'none' },
-  },
+  }),
   sizes: {
     xs: {
       fontSize: 'xs',
@@ -39,11 +50,46 @@ export const ThemeButton: ComponentStyleConfig = {
     },
   },
   variants: {
+    primary: props => ({
+      color: 'white',
+      bgColor: props.colorScheme[500] || 'blue.500',
+      borderColor: 'transparent',
+      borderWidth: 1,
+      _disabled: {
+        backgroundColor: 'gray.main',
+        color: 'gray.600',
+        opacity: 1,
+      },
+      _hover: {
+        bgColor: props.colorScheme[300] || 'blue.hover',
+      },
+      _active: {
+        bgColor: props.colorScheme[400] || 'blue.active',
+      },
+    }),
     outline: props => ({
+      bgColor: 'white',
       borderColor: props.colorScheme[500] || 'blue.500',
+      _hover: {
+        borderColor: props.colorScheme[400] || 'blue.hover',
+        bgColor: 'white',
+        _disabled: {
+          color: 'gray.600',
+          opacity: 0.75,
+          backgroundColor: 'gray.main',
+          borderColor: 'gray.600',
+          outline: 'none',
+        },
+      },
+      _active: {
+        color: props.colorScheme[400] || 'blue.hover',
+        borderColor: props.colorScheme[400] || 'blue.hover',
+        bgColor: 'white',
+      },
     }),
   },
   defaultProps: {
     size: 'md',
+    variant: 'primary',
   },
 };

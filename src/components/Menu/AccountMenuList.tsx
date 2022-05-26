@@ -35,7 +35,7 @@ const StyledMenuItem = chakra(MenuItem, {
     _last: {
       borderBottomRadius: 'lg',
     },
-    _focus: { bg: 'secondary.300' },
-    _active: { bg: 'secondary.400' },
+    _focus: { bg: 'blue.hover' },
+    _active: { bg: 'blue.active' },
   },
 });
