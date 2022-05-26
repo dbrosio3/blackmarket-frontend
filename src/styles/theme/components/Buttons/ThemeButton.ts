@@ -2,6 +2,7 @@ import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const ThemeButton: ComponentStyleConfig = {
   baseStyle: props => ({
+    width: 'fit-content',
     fontWeight: 'bold',
     borderRadius: '8px',
     _active: {
