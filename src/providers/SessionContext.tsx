@@ -36,12 +36,14 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
   const handleAuthResponse = ({ data, headers }: AuthResponse) => {
     const accessToken = String(headers['access-token']);
     const expiry = Number(headers.expiry);
+    const client = String(headers.client);
 
     const newSession: Session = {
       user: data.data,
       state: SessionState.UNLOCKED,
       token: accessToken,
       expiration: expiry,
+      client,
     };
 
     storage.setSession(newSession);

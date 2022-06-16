@@ -22,6 +22,7 @@ export type Session = {
   user: UserData | undefined;
   token?: string;
   expiration?: number;
+  client?: string;
   state: SessionState;
 };
 
