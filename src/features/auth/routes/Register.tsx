@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Layout } from '../components/common/Layout';
+import { AuthLayout } from '../components/common/AuthLayout';
 import { RegisterFormContainer } from '../components/Register/RegisterFormContainer';
 
 export const Register = () => (
-  <Layout>
+  <AuthLayout>
     <RegisterFormContainer />
-  </Layout>
+  </AuthLayout>
 );

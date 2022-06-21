@@ -5,6 +5,12 @@
     "signUp": "Sign up",
     "refresh": "Refresh"
   },
+  "layout": {
+    "header": {
+      "account": "My Account",
+      "cart": "Shopping Cart"
+    }
+  },
   "auth": {
     "login": {
       "forgotPassword": "I forgot my password",
@@ -46,6 +52,20 @@
         "title": "Welcome {{name}}!",
         "description": "We've succesfully created your account."
       }
+    }
+  },
+  "menu": {
+    "account": {
+      "recentSearches": "Recent Searches",
+      "directMessages": "Direct Messages",
+      "purchases": "Purchases",
+      "security": "Security",
+      "configuration": "Configuration",
+      "help": "Help",
+      "logOut": "Log Out"
+    },
+    "searchBar": {
+      "placeholder": "Search for products"
     }
   },
   "error": {

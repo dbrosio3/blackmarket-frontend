@@ -9,7 +9,7 @@ import { RegisterForm } from './RegisterForm';
 
 export const RegisterFormContainer = () => (
   <AuthSection>
-    <BlackMarketLogo width={174} height={31} />
+    <BlackMarketLogo height={31} />
     <RegisterForm />
     <RegisterFooter />
   </AuthSection>

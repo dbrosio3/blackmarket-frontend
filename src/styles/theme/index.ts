@@ -5,6 +5,7 @@ import { ThemeInput } from './components/Inputs/';
 import { ThemeLink } from './components/Link/ThemeLink';
 
 const colors = {
+  common: { white: '#FFFFFF', black: '#000000' },
   primary: {
     main: '#52c675',
     50: '#ecf9f0',
@@ -20,11 +21,11 @@ const colors = {
   },
   secondary: {
     main: '#00031a',
-    50: '#e5e8ff',
+    50: '#f4f7fa',
     100: '#b8c0ff',
     200: '#8a97ff',
-    300: '#5c6fff',
-    400: '#2e46ff',
+    300: '#446cbc',
+    400: '#254A96',
     500: '#00031a',
     600: '#0018cc',
     700: '#001299',
