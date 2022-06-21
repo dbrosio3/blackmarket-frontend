@@ -11,7 +11,7 @@ export const LinksColumn: React.FC<{ sectionKey: string; links: Array<string> }>
 
   return (
     <GridItem w="100%">
-      <VStack color="white" align="start" flexGrow={1}>
+      <VStack color="common.white" align="start" flexGrow={1}>
         <Heading as="h6" size="xs">
           {t(`footer.${sectionKey}.title`)}
         </Heading>
