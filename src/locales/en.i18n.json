@@ -16,6 +16,10 @@
       "password": {
         "label": "Password",
         "placeholder": "Type your password"
+      },
+      "signUpLoadingText": "Logging in...",
+      "success": {
+        "title": "Welcome back {{name}}!"
       }
     },
     "register": {
@@ -49,6 +53,7 @@
     "errorFallback": {
       "title": "Ooops, something went wrong :( "
     },
+    "notImplementedYet": "Sorry! Not implemented yet",
     "validations": {
       "fieldInvalid": "{{field}} is invalid",
       "fieldRequired": "{{field}} is required",

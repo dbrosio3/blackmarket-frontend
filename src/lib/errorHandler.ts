@@ -1,9 +1,18 @@
+import { AxiosError } from 'axios';
+
 import i18n from '@/lib/i18n';
 import { customToast } from '@/utils/customStandaloneToast';
 
+const getMessageFromAxiosError = (error: AxiosError) => JSON.parse(error.request.response).error;
+
 const getErrorMessage = (error: unknown) => {
-  if (error instanceof Error) return error.message;
-  return String(error);
+  try {
+    if (error instanceof AxiosError) return getMessageFromAxiosError(error);
+    if (error instanceof Error) return error.message;
+    return String(error);
+  } catch (metaError) {
+    return null;
+  }
 };
 
 class ErrorHandler {

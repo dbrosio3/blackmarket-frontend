@@ -50,3 +50,27 @@ export type RegistrationData = {
   userName: string;
   password: string;
 };
+
+export type LoginCredentialsDTO = {
+  email: string;
+  password: string;
+};
+
+export type LoginCredentials = {
+  userId: string;
+  password: string;
+};
+
+export enum Error {
+  REQUIRED = 'fieldRequired',
+  INVALID = 'fieldInvalid',
+  TOO_SHORT = 'fieldTooShort',
+  TOO_LONG = 'fieldTooLong',
+}
+
+export enum Field {
+  USER_ID = 'userId',
+  FULL_NAME = 'fullName',
+  USER_NAME = 'userName',
+  PASSWORD = 'password',
+}

@@ -11,7 +11,7 @@ import { registerFormikSchema } from '@features/auth/utils/registerFormSchema';
 import { useSession } from '@providers/SessionContext';
 import { FullWidthButton } from '@styles/theme/components/Buttons';
 
-import { InputsWrapper } from './InputsWrapper';
+import { InputsWrapper } from '../common/InputsWrapper';
 
 const fields = [
   { name: 'userId', type: 'email' },

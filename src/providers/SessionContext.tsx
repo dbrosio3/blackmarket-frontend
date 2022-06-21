@@ -4,13 +4,20 @@ import { errorHandler } from '@/lib/errorHandler';
 import { JustChildrenProp } from '@/types';
 import storage from '@/utils/storage';
 import { registerWithEmailAndPassword } from '@features/auth';
-import { AuthResponse, RegistrationData, Session, SessionState } from '@features/auth/types';
+import { loginWithCredentials } from '@features/auth/api/login';
+import {
+  AuthResponse,
+  LoginCredentials,
+  RegistrationData,
+  Session,
+  SessionState,
+} from '@features/auth/types';
 
 interface ISessionContext {
   session: Session;
   isAuthenticated: boolean;
-  login(): void;
-  logout(): void;
+  login: (credentials: LoginCredentials) => Promise<string>;
+  logout: () => void;
   register: (registrationValues: RegistrationData) => Promise<string>;
 }
 
@@ -41,8 +48,13 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
     setSession(newSession);
   };
 
-  const login = () => {
-    alert('login');
+  const login = async (credentials: LoginCredentials) => {
+    const response = await loginWithCredentials({
+      email: credentials.userId,
+      password: credentials.password,
+    });
+    handleAuthResponse(response);
+    return response.data.data.name;
   };
 
   const register = async (values: RegistrationData) => {
@@ -54,9 +66,7 @@ const SessionProvider: React.FC<JustChildrenProp> = ({ children }) => {
         password: values.password,
       },
     });
-
     handleAuthResponse(response);
-
     return response.data.data.name;
   };
 
