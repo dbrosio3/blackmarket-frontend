@@ -67,7 +67,8 @@ module.exports = {
         '@typescript-eslint/no-empty-function': ['off'],
         '@typescript-eslint/no-explicit-any': ['off'],
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-        'no-debugger': "warn"
+        'no-debugger': "warn",
+        "arrow-body-style": ["error", "as-needed"]
       },
     },
   ],

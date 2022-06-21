@@ -7,13 +7,11 @@ import { Dashboard, MockRoute } from '@features/misc';
 
 import { PATHS } from './paths';
 
-const App = () => {
-  return (
-    <AppLayout>
-      <Outlet />
-    </AppLayout>
-  );
-};
+const App = () => (
+  <AppLayout>
+    <Outlet />
+  </AppLayout>
+);
 
 export const protectedRoutes = [
   {

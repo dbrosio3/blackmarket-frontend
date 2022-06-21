@@ -3,10 +3,8 @@ import React from 'react';
 import { Layout } from '../components/common/Layout';
 import { LoginFormContainer } from '../components/Login/LoginFormContainer';
 
-export const Login = () => {
-  return (
-    <Layout>
-      <LoginFormContainer />
-    </Layout>
-  );
-};
+export const Login = () => (
+  <Layout>
+    <LoginFormContainer />
+  </Layout>
+);
