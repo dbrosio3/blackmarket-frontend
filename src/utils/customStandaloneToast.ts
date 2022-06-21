@@ -2,4 +2,8 @@ import { createStandaloneToast } from '@chakra-ui/react';
 
 import { blackMarketTheme } from '@styles/theme';
 
-export const customToast = createStandaloneToast({ theme: blackMarketTheme });
+const { ToastContainer, toast: customToast } = createStandaloneToast({
+  theme: blackMarketTheme,
+});
+
+export { ToastContainer, customToast };

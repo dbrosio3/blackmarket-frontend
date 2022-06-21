@@ -23,6 +23,7 @@ export const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    console.log('i fire once');
     getHeroProducts();
   }, [getHeroProducts]);
 

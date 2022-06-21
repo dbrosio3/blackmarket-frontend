@@ -17,7 +17,6 @@ const getErrorMessage = (error: unknown) => {
 
 class ErrorHandler {
   reportError = (error: unknown) => {
-    console.error(error);
     customToast({
       title: String(i18n.t('error.genericError')),
       description: getErrorMessage(error),

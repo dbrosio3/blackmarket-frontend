@@ -6,17 +6,19 @@ interface MenuButtonProps extends ButtonProps {
   isOpen?: boolean;
 }
 
-export const WidgetButton = forwardRef<MenuButtonProps, 'button'>((props, ref) => (
-  <Button
-    ref={ref}
-    borderBottomRadius={props.isOpen ? 0 : 'lg'}
-    size={useBreakpointValue({ base: 'xs', sm: 'sm' })}
-    ml={[2, 4, 6]}
-    {...props}
-  >
-    {props.children}
-  </Button>
-));
+export const WidgetButton = forwardRef<MenuButtonProps, 'button'>(
+  ({ isOpen, children, ...restProps }, ref) => (
+    <Button
+      ref={ref}
+      borderBottomRadius={isOpen ? 0 : 'lg'}
+      size={useBreakpointValue({ base: 'xs', sm: 'sm' })}
+      ml={[2, 4, 6]}
+      {...restProps}
+    >
+      {children}
+    </Button>
+  )
+);
 
 export const NavBarWidget = chakra(WidgetButton, {
   baseStyle: {
