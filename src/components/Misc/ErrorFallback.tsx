@@ -7,7 +7,7 @@ export const ErrorFallback = () => {
   const { t } = useTranslation();
 
   return (
-    <Center bg="white" h="100vh" color="secondary.main">
+    <Center bg="common.white" h="100vh" color="secondary.main">
       <Stack>
         <Heading mb={4}>{t('error.errorFallback.title')}</Heading>
         <Center>

@@ -11,7 +11,8 @@ export const UserAvatar = chakra(Avatar, {
      */
     height: 'calc(100% + 1px)',
     width: 'auto',
-    border: '0.5px solid white',
+    borderWidth: '0.5px',
+    borderColor: 'common.white',
     marginLeft: '-0.5px',
   },
 });

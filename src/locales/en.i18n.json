@@ -54,6 +54,20 @@
       }
     }
   },
+  "menu": {
+    "account": {
+      "recentSearches": "Recent Searches",
+      "directMessages": "Direct Messages",
+      "purchases": "Purchases",
+      "security": "Security",
+      "configuration": "Configuration",
+      "help": "Help",
+      "logOut": "Log Out"
+    },
+    "searchBar": {
+      "placeholder": "Search for products"
+    }
+  },
   "error": {
     "genericError": "An error occurred.",
     "errorFallback": {

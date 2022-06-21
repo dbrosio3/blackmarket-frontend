@@ -24,10 +24,11 @@ export const NavBarWidget = chakra(WidgetButton, {
     width: '168px',
     minW: 'unset',
     flexShrink: 0,
-    border: '0.5px solid white',
+    borderWidth: '0.5px',
+    borderColor: 'common.white',
     borderTopRadius: 'lg',
     padding: 0,
-    color: 'white',
+    color: 'common.white',
     fontWeight: 'normal',
     _hover: {
       backgroundColor: 'transparent',

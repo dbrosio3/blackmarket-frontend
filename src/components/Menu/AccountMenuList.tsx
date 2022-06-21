@@ -9,9 +9,9 @@ type Item = {
 
 export const AccountMenuList: React.FC<{ items: Array<Item> }> = ({ items }) => (
   <StyledMenuList>
-    {items.map(item => (
-      <StyledMenuItem key={item.label} onClick={item.action}>
-        {item.label}
+    {items.map(({ label, action }) => (
+      <StyledMenuItem key={label} onClick={action}>
+        {label}
       </StyledMenuItem>
     ))}
   </StyledMenuList>
@@ -21,7 +21,7 @@ const StyledMenuList = chakra(MenuList, {
   baseStyle: {
     minW: 'unset',
     bg: 'secondary.main',
-    color: 'white',
+    color: 'common.white',
     borderTopRadius: 0,
     borderBottomRadius: 'lg',
     py: 0,
@@ -31,7 +31,7 @@ const StyledMenuList = chakra(MenuList, {
 const StyledMenuItem = chakra(MenuItem, {
   baseStyle: {
     borderBottomWidth: 1,
-    borderBottomColor: 'white',
+    borderBottomColor: 'common.white',
     _last: {
       borderBottomRadius: 'lg',
     },

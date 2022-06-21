@@ -18,8 +18,8 @@ export const Dashboard = () => {
     <>
       <BackgroundBox />
       <Stack h="1200px" w="100%" py={20} px={10} zIndex={0}>
-        <Heading color="white">Dashboard</Heading>
-        <Textarea h="100%" value={JSON.stringify(session, null, 2)} readOnly bg="white" />
+        <Heading color="common.white">Dashboard</Heading>
+        <Textarea h="100%" value={JSON.stringify(session, null, 2)} readOnly bg="common.white" />
         <Button onClick={logout}>{t('common.logOut')}</Button>
       </Stack>
     </>

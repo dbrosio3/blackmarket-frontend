@@ -6,7 +6,7 @@ import { createIcon, IconProps } from '@chakra-ui/react';
 export const BlackMarketLogo: React.FC<IconProps> = ({
   height = 'auto',
   width = 'auto',
-  color = 'black',
+  color = 'common.black',
   ...restProps
 }) => <BlackMarketSVG height={height} width={width} color={color} {...restProps} />;
 

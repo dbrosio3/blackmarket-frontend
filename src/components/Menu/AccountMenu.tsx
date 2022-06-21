@@ -36,13 +36,13 @@ export const AccountMenu = () => {
           </MenuButton>
           <AccountMenuList
             items={[
-              { label: 'Recent Searches' },
-              { label: 'Direct Messages' },
-              { label: 'Purchases' },
-              { label: 'Security' },
-              { label: 'Configuration' },
-              { label: 'Help' },
-              { label: 'Log Out', action: logout },
+              { label: t('menu.account.recentSearches') },
+              { label: t('menu.account.directMessages') },
+              { label: t('menu.account.purchases') },
+              { label: t('menu.account.security') },
+              { label: t('menu.account.configuration') },
+              { label: t('menu.account.help') },
+              { label: t('menu.account.logOut'), action: logout },
             ]}
           />
         </>

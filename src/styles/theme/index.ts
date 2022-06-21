@@ -5,6 +5,7 @@ import { ThemeInput } from './components/Inputs/';
 import { ThemeLink } from './components/Link/ThemeLink';
 
 const colors = {
+  common: { white: '#FFFFFF', black: '#000000' },
   primary: {
     main: '#52c675',
     50: '#ecf9f0',

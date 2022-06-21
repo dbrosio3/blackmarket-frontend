@@ -9,7 +9,7 @@ import { FooterContainer } from './FooterContainer';
 export const Footer = () => (
   <FooterContainer className="Footer" justifyContent="center">
     <MaxWidthWrapper>
-      <Text color="white">{`((Footer))`}</Text>
+      <Text color="common.white">{`((Footer))`}</Text>
     </MaxWidthWrapper>
   </FooterContainer>
 );
