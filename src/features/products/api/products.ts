@@ -2,7 +2,7 @@ import { axiosClient } from '@/lib/axios';
 
 import { ProductsResponse } from '../types.ts';
 
-export const getProducts = ({ page }: { page: number }): Promise<ProductsResponse> => {
+export const getProducts = ({ page }: { page?: number }): Promise<ProductsResponse> => {
   const params = page ? `page=${page}` : '';
   const url = `/products${params}`;
 

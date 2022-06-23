@@ -1,40 +1,26 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 
-import { Button, Heading, Stack, Textarea } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
+import { Stack } from '@chakra-ui/react';
 
-import { useSession } from '@providers/SessionContext';
+import { ListErrorState } from '@components/Lists';
+import { SuspenseWrapper } from '@components/Misc';
 
-import { getProducts } from '../api/products';
+import { ProductsHeroSection, ProductsHeroSkeleton } from '../components';
 import { BackgroundBox } from '../components/BackgroundBox';
-import { Product } from '../types.ts';
 
 /**
  * Dashboard not implemented yet. Currently only displays session state for debugging purposes
  */
-export const Dashboard = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const { t } = useTranslation();
-  const { logout } = useSession();
-
-  const getHeroProducts = useCallback(async () => {
-    const response = await getProducts({ page: 1 });
-    setProducts(response.data.products);
-  }, []);
-
-  useEffect(() => {
-    console.log('i fire once');
-    getHeroProducts();
-  }, [getHeroProducts]);
-
-  return (
-    <>
-      <BackgroundBox />
-      <Stack h="1200px" w="100%" py={20} px={10} zIndex={0}>
-        <Heading color="white">Dashboard</Heading>
-        <Textarea h="100%" value={JSON.stringify(products, null, 2)} readOnly bg="white" />
-        <Button onClick={logout}>{t('common.logOut')}</Button>
-      </Stack>
-    </>
-  );
-};
+export const Dashboard = () => (
+  <>
+    <BackgroundBox />
+    <Stack h="1200px" w="100%" py={20} px={10} zIndex={0}>
+      <SuspenseWrapper
+        LoadingFallback={<ProductsHeroSkeleton />}
+        ErrorFallback={<ListErrorState />}
+      >
+        <ProductsHeroSection />
+      </SuspenseWrapper>
+    </Stack>
+  </>
+);
