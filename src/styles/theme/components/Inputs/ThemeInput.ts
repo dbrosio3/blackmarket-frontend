@@ -41,13 +41,13 @@ export const ThemeInput: ComponentStyleConfig = {
   variants: {
     outline: {
       field: {
-        borderColor: 'secondary.500',
+        borderColor: 'blue.500',
         border: '1px solid',
         _focus: {
           zIndex: 1,
-          borderColor: 'secondary.400',
+          borderColor: 'blue.400',
         },
-        _hover: { borderColor: 'secondary.400' },
+        _hover: { borderColor: 'blue.400' },
       },
     },
   },

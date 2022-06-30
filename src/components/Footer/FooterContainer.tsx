@@ -5,6 +5,6 @@ export const FooterContainer = chakra(Flex, {
     width: '100%',
     px: 9,
     py: 4,
-    backgroundColor: 'secondary.main',
+    backgroundColor: 'blue.main',
   },
 });

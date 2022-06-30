@@ -20,7 +20,7 @@ export const AccountMenuList: React.FC<{ items: Array<Item> }> = ({ items }) => 
 const StyledMenuList = chakra(MenuList, {
   baseStyle: {
     minW: 'unset',
-    bg: 'secondary.main',
+    bg: 'blue.main',
     color: 'common.white',
     borderTopRadius: 0,
     borderBottomRadius: 'lg',
@@ -35,7 +35,7 @@ const StyledMenuItem = chakra(MenuItem, {
     _last: {
       borderBottomRadius: 'lg',
     },
-    _focus: { bg: 'secondary.300' },
-    _active: { bg: 'secondary.400' },
+    _focus: { bg: 'blue.hover' },
+    _active: { bg: 'blue.active' },
   },
 });

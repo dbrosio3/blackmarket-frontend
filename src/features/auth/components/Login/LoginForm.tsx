@@ -75,7 +75,7 @@ export const LoginForm = () => {
             ))}
           </InputsWrapper>
           <FullWidthButton
-            colorScheme="secondary"
+            colorScheme="blue"
             onClick={handleSubmit}
             disabled={!isValid || isLoggingIn}
             isLoading={isLoggingIn}

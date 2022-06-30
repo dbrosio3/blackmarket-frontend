@@ -6,7 +6,7 @@ import { ThemeLink } from './components/Link/ThemeLink';
 
 const colors = {
   common: { white: '#FFFFFF', black: '#000000' },
-  primary: {
+  green: {
     main: '#52c675',
     50: '#ecf9f0',
     100: '#e3fceb',
@@ -19,13 +19,17 @@ const colors = {
     800: '#1c6032',
     900: '#0c3b1d',
   },
-  secondary: {
+  blue: {
     main: '#00031a',
+    hover: '#446cbc',
+    focus: '#1d76ef',
+    active: '#254a96',
+    activeOutline: '#9ebbf3',
     50: '#f4f7fa',
-    100: '#b8c0ff',
-    200: '#8a97ff',
+    100: '#9ebbf3',
+    200: '#1d76ef',
     300: '#446cbc',
-    400: '#254A96',
+    400: '#254a96',
     500: '#00031a',
     600: '#0018cc',
     700: '#001299',

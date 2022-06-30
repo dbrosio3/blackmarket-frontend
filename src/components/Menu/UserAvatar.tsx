@@ -2,7 +2,7 @@ import { Avatar, chakra } from '@chakra-ui/react';
 
 export const UserAvatar = chakra(Avatar, {
   baseStyle: {
-    backgroundColor: 'primary.main',
+    backgroundColor: 'green.main',
     borderRadius: 'md',
     /**
      * to properly merge the avatar's border w/ container's border:

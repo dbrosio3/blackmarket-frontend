@@ -4,7 +4,7 @@ export const BackgroundBox = chakra(Box, {
   baseStyle: {
     w: '100%',
     h: '386px',
-    bg: 'secondary.main',
+    bg: 'blue.main',
     position: 'absolute',
     left: 0,
     right: 0,

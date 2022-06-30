@@ -76,7 +76,7 @@ export const RegisterForm = () => {
             ))}
           </InputsWrapper>
           <FullWidthButton
-            colorScheme="secondary"
+            colorScheme="blue"
             onClick={handleSubmit}
             disabled={!isValid || isSigningUp}
             isLoading={isSigningUp}
