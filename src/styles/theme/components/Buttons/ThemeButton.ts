@@ -1,12 +1,12 @@
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const ThemeButton: ComponentStyleConfig = {
-  baseStyle: props => ({
+  baseStyle: ({ colorScheme }) => ({
     width: 'fit-content',
     fontWeight: 'bold',
     borderRadius: '8px',
     _active: {
-      outlineColor: props.colorScheme[100] || 'blue.activeOutline',
+      outlineColor: colorScheme[100] || 'blue.activeOutline',
       outlineStyle: 'solid',
       outlineOffset: 0,
     },
@@ -51,9 +51,9 @@ export const ThemeButton: ComponentStyleConfig = {
     },
   },
   variants: {
-    primary: props => ({
-      color: 'white',
-      bgColor: props.colorScheme[500] || 'blue.500',
+    primary: ({ colorScheme }) => ({
+      color: 'common.white',
+      bgColor: colorScheme[500] || 'blue.500',
       borderColor: 'transparent',
       borderWidth: 1,
       _disabled: {
@@ -62,18 +62,18 @@ export const ThemeButton: ComponentStyleConfig = {
         opacity: 1,
       },
       _hover: {
-        bgColor: props.colorScheme[300] || 'blue.hover',
+        bgColor: colorScheme[300] || 'blue.hover',
       },
       _active: {
-        bgColor: props.colorScheme[400] || 'blue.active',
+        bgColor: colorScheme[400] || 'blue.active',
       },
     }),
-    outline: props => ({
-      bgColor: 'white',
-      borderColor: props.colorScheme[500] || 'blue.500',
+    outline: ({ colorScheme }) => ({
+      bgColor: 'common.white',
+      borderColor: colorScheme[500] || 'blue.500',
       _hover: {
-        borderColor: props.colorScheme[400] || 'blue.hover',
-        bgColor: 'white',
+        borderColor: colorScheme[400] || 'blue.hover',
+        bgColor: 'common.white',
         _disabled: {
           color: 'gray.600',
           opacity: 0.75,
@@ -83,9 +83,9 @@ export const ThemeButton: ComponentStyleConfig = {
         },
       },
       _active: {
-        color: props.colorScheme[400] || 'blue.hover',
-        borderColor: props.colorScheme[400] || 'blue.hover',
-        bgColor: 'white',
+        color: colorScheme[400] || 'blue.hover',
+        borderColor: colorScheme[400] || 'blue.hover',
+        bgColor: 'common.white',
       },
     }),
   },
