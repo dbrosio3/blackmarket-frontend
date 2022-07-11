@@ -21,7 +21,7 @@ export const NewsletterSection = () => {
           <TextField
             label={t('footer.newsletter.label')}
             placeholder={t('footer.newsletter.placeholder')}
-            name={'email'}
+            name="email"
             styles={{ bg: 'common.white', color: 'secondary.main' }}
           />
           <FullWidthButton variant="outline" borderColor="common.white">

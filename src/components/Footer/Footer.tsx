@@ -10,7 +10,7 @@ import { LogosSection } from './LogosSection';
 import { NewsletterSection } from './NewsletterSection';
 
 export const Footer = () => (
-  <FooterContainer className="Footer" justifyContent="center">
+  <FooterContainer as="footer" className="Footer" justifyContent="center">
     <MaxWidthWrapper wrap={['wrap', 'wrap', 'nowrap']}>
       <VStack
         w="100%"
