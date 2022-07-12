@@ -19,22 +19,29 @@ export const ThemeButton: ComponentStyleConfig = {
     _focus: { boxShadow: 'none' },
   },
   sizes: {
+    xs: {
+      fontSize: 'xs',
+      h: 7,
+      px: 4,
+      py: 3,
+    },
     sm: {
       fontSize: 'sm',
+      h: 10,
       px: 4,
       py: 3,
     },
     md: {
       fontSize: 'md',
-      h: '2.75rem',
+      h: 12,
       px: 6,
       py: 4,
     },
   },
   variants: {
-    outline: {
-      borderColor: 'secondary.500',
-    },
+    outline: props => ({
+      borderColor: props.colorScheme[500] || 'secondary.500',
+    }),
   },
   defaultProps: {
     size: 'md',

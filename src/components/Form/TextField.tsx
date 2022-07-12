@@ -13,9 +13,10 @@ type TextFieldProps = {
   placeholder: string;
   icon?: ReactNode;
   autoComplete?: string;
+  styles?: object;
 };
 
-export const TextField: React.FC<TextFieldProps> = ({ label, ...props }) => {
+export const TextField: React.FC<TextFieldProps> = ({ label, styles, ...props }) => {
   const [field, meta] = useField(props);
 
   const { helpTextSpacing } = useHelpTextSpacing({ message: meta.error });
@@ -23,7 +24,7 @@ export const TextField: React.FC<TextFieldProps> = ({ label, ...props }) => {
   return (
     <FormControl isInvalid={Boolean(meta.error && meta.touched)}>
       <FormLabel>{label}</FormLabel>
-      <Field as={InputField} {...field} {...props} />
+      <Field as={InputField} {...field} {...props} {...styles} />
       <FormErrorMessage h={helpTextSpacing}>{meta.error}</FormErrorMessage>
     </FormControl>
   );
